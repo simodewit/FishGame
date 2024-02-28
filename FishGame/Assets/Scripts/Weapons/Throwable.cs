@@ -19,6 +19,8 @@ public class Throwable : MonoBehaviour
     public bool hasFront;
     [Tooltip("The speed thats needed to turn the object if hasFront is enabled")][Range(0, 20)]
     public float turnSpeed = 5;
+    [Tooltip("The amount of distance the throwable has to travel before destroyed if missed")][Range(0,1000)]
+    public float missedDistance = 100;
 
     private bool activateTimer;
     private bool isPickedUp;
@@ -37,6 +39,7 @@ public class Throwable : MonoBehaviour
     {
         Timer();
         FaceDirection();
+        DoesntHit();
     }
 
     #endregion
@@ -82,6 +85,20 @@ public class Throwable : MonoBehaviour
 
     #endregion
 
+    #region missed code
+
+    public void DoesntHit()
+    {
+        float distance = Vector3.Distance(transform.position, Vector3.zero);
+
+        if (distance >= missedDistance)
+        {
+            Destroy(gameObject);
+        }
+    }
+
+    #endregion
+
     #region extra code
 
     public void PickupThrowable()
@@ -103,8 +120,9 @@ public class Throwable : MonoBehaviour
         if (boss != null)
         {
             boss.Health(damage);
-            Destroy(gameObject);
         }
+
+        //Destroy(gameObject);
     }
 
     #endregion
