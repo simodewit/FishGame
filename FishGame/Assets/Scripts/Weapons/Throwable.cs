@@ -33,6 +33,7 @@ public class Throwable : MonoBehaviour
     public void Start()
     {
         timer = time;
+        rb.useGravity = false;
     }
 
     public void Update()
@@ -105,6 +106,7 @@ public class Throwable : MonoBehaviour
     {
         col.enabled = false;
         isPickedUp = true;
+        rb.useGravity = true;
     }
 
     public void DropThrowable()
@@ -122,7 +124,7 @@ public class Throwable : MonoBehaviour
             boss.Health(damage);
         }
 
-        //Destroy(gameObject);
+        Destroy(gameObject);
     }
 
     #endregion

@@ -5,28 +5,27 @@ using UnityEngine.XR.Interaction.Toolkit;
 
 public class PickupWeapon : MonoBehaviour
 {
-    [Tooltip("The object it has to instantiate")]
-    public GameObject objectToInst;
+    [Tooltip("Place where the spear should be instantiated")]
+    public Transform spawnPlace;
+    [Tooltip("The item to instantiate")]
+    public GameObject item;
+    [Tooltip("The distance that the item has to go before spawning a new one")]
+    public float spawnDistance;
 
-    private GameObject colObject;
+    private GameObject currentItem;
 
-    public void OnTriggerEnter(Collider other)
+    public void Start()
     {
-        XRGrabInteractable grab = other.transform.GetComponent<XRGrabInteractable>();
+        currentItem = Instantiate(item, spawnPlace.position, Quaternion.identity);
+    }
 
-        if (grab != null)
+    public void Update()
+    {
+        float distance = Vector3.Distance(currentItem.transform.position, spawnPlace.position);
+
+        if (distance >= spawnDistance)
         {
-            colObject = other.gameObject;
+            currentItem = Instantiate(item, spawnPlace.position, Quaternion.identity);
         }
-    }
-
-    public void OnTriggerExit(Collider other)
-    {
-        colObject = null;
-    }
-
-    public void InstObject(ActivateEventArgs args)
-    {
-
     }
 }
