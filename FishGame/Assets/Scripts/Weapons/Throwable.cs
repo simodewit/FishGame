@@ -21,7 +21,6 @@ public class Throwable : MonoBehaviour
     public float turnSpeed = 5;
     [Tooltip("The amount of distance the throwable has to travel before destroyed if missed")][Range(0,1000)]
     public float missedDistance = 100;
-<<<<<<< Updated upstream
     [Tooltip("The seconds that the throwable has before destroyed after impact")][Range(0,60)]
     public float destroyTime = 10;
     [Tooltip("Decides wether the throwable stops on impact or not")]
@@ -32,14 +31,6 @@ public class Throwable : MonoBehaviour
     private bool hasHit;
     private float timer;
     private float timer2;
-=======
-    [Tooltip("The model of the throwable")]
-    public GameObject model;
-
-    private bool enableCollider;
-    private float timer;
-    private Vector3 startPos;
->>>>>>> Stashed changes
 
     #endregion
 
@@ -47,18 +38,14 @@ public class Throwable : MonoBehaviour
 
     public void Start()
     {
-        startPos = transform.position;
         timer = time;
-<<<<<<< Updated upstream
         rb.useGravity = false;
         timer2 = destroyTime;
-=======
->>>>>>> Stashed changes
     }
 
     public void Update()
     {
-        EnableCollider();
+        Timer();
         FaceDirection();
         DoesntHit();
         HitSomething();
@@ -68,15 +55,15 @@ public class Throwable : MonoBehaviour
 
     #region timer
 
-    public void EnableCollider()
+    public void Timer()
     {
-        if (enableCollider)
+        if (activateTimer)
         {
             timer -= Time.deltaTime;
 
             if (timer <= 0)
             {
-                enableCollider = false;
+                activateTimer = false;
                 col.enabled = true;
                 timer = time;
             }
@@ -89,9 +76,8 @@ public class Throwable : MonoBehaviour
 
     public void FaceDirection()
     {
-        if (!hasFront)
+        if (hasFront)
         {
-<<<<<<< Updated upstream
             if (isPickedUp)
             {
                 transform.localRotation = new Quaternion(90, 0, 0, 0);
@@ -104,20 +90,6 @@ public class Throwable : MonoBehaviour
                     transform.LookAt(lookTowards);
                 }
             }
-=======
-            return;
-        }
-
-        if (!rb.useGravity)
-        {
-            return;
-        }
-
-        if (rb.velocity.magnitude >= turnSpeed)
-        {
-            Vector3 look = rb.velocity + transform.position;
-            transform.LookAt(look);
->>>>>>> Stashed changes
         }
     }
 
@@ -127,7 +99,7 @@ public class Throwable : MonoBehaviour
 
     public void DoesntHit()
     {
-        float distance = Vector3.Distance(transform.position, startPos);
+        float distance = Vector3.Distance(transform.position, Vector3.zero);
 
         if (distance >= missedDistance)
         {
@@ -137,7 +109,6 @@ public class Throwable : MonoBehaviour
 
     #endregion
 
-<<<<<<< Updated upstream
     public void HitSomething()
     {
         if (hasHit)
@@ -156,33 +127,19 @@ public class Throwable : MonoBehaviour
     }
 
     #region extra code
-=======
-    #region inputs
->>>>>>> Stashed changes
 
     public void PickupThrowable()
     {
         col.enabled = false;
-<<<<<<< Updated upstream
         isPickedUp = true;
-=======
->>>>>>> Stashed changes
     }
 
     public void DropThrowable()
     {
-<<<<<<< Updated upstream
         activateTimer = true;
         isPickedUp = false;
-=======
-        enableCollider = true;
->>>>>>> Stashed changes
         rb.useGravity = true;
     }
-
-    #endregion
-
-    #region collision
 
     public void OnCollisionEnter(Collision collision)
     {
@@ -192,15 +149,11 @@ public class Throwable : MonoBehaviour
         if (boss != null)
         {
             boss.Health(damage);
-<<<<<<< Updated upstream
             hasHit = true;
         }
         else if(interactor == null)
         {
             hasHit = true;
-=======
-            Destroy(gameObject);
->>>>>>> Stashed changes
         }
     }
 

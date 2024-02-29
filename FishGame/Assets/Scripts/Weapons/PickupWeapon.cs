@@ -11,18 +11,12 @@ public class PickupWeapon : MonoBehaviour
     public GameObject item;
     [Tooltip("The distance that the item has to go before spawning a new one")]
     public float spawnDistance;
-    [Tooltip("The rotation of the item when spawned in")]
-    public Quaternion spawnRotation;
 
     private GameObject currentItem;
 
     public void Start()
     {
-<<<<<<< Updated upstream
         CreateItem();
-=======
-        Spawn();
->>>>>>> Stashed changes
     }
 
     public void Update()
@@ -36,7 +30,6 @@ public class PickupWeapon : MonoBehaviour
 
         if (distance >= spawnDistance)
         {
-<<<<<<< Updated upstream
             CreateItem();
         }
     }
@@ -45,14 +38,5 @@ public class PickupWeapon : MonoBehaviour
     {
         currentItem = Instantiate(item, spawnPlace.position, Quaternion.identity);
         currentItem.GetComponent<Rigidbody>().useGravity = false;
-=======
-            Spawn();
-        }
-    }
-
-    public void Spawn()
-    {
-        currentItem = Instantiate(item, spawnPlace.position, spawnRotation);
->>>>>>> Stashed changes
     }
 }
