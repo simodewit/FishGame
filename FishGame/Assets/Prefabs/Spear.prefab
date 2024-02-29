@@ -330,3 +330,5 @@ MonoBehaviour:
   hasFront: 1
   turnSpeed: 5
   missedDistance: 200
+  destroyTime: 10
+  stayOnImpact: 1
