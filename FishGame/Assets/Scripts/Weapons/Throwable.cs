@@ -21,16 +21,10 @@ public class Throwable : MonoBehaviour
     public float turnSpeed = 5;
     [Tooltip("The amount of distance the throwable has to travel before destroyed if missed")][Range(0,1000)]
     public float missedDistance = 100;
-    [Tooltip("The seconds that the throwable has before destroyed after impact")][Range(0,60)]
-    public float destroyTime = 10;
-    [Tooltip("Decides wether the throwable stops on impact or not")]
-    public bool stayOnImpact;
 
     private bool activateTimer;
     private bool isPickedUp;
-    private bool hasHit;
     private float timer;
-    private float timer2;
 
     #endregion
 
@@ -40,7 +34,6 @@ public class Throwable : MonoBehaviour
     {
         timer = time;
         rb.useGravity = false;
-        timer2 = destroyTime;
     }
 
     public void Update()
@@ -48,7 +41,6 @@ public class Throwable : MonoBehaviour
         Timer();
         FaceDirection();
         DoesntHit();
-        HitSomething();
     }
 
     #endregion
@@ -86,8 +78,7 @@ public class Throwable : MonoBehaviour
             {
                 if (rb.velocity.magnitude >= turnSpeed)
                 {
-                    Vector3 lookTowards = transform.position + rb.velocity;
-                    transform.LookAt(lookTowards);
+                    transform.LookAt(rb.velocity);
                 }
             }
         }
@@ -109,52 +100,31 @@ public class Throwable : MonoBehaviour
 
     #endregion
 
-    public void HitSomething()
-    {
-        if (hasHit)
-        {
-            timer2 -= Time.deltaTime;
-
-            if (stayOnImpact)
-            {
-                transform.position = transform.position;
-            }
-            if (timer2 <= 0)
-            {
-                Destroy(gameObject);
-            }
-        }
-    }
-
     #region extra code
 
     public void PickupThrowable()
     {
         col.enabled = false;
         isPickedUp = true;
+        rb.useGravity = true;
     }
 
     public void DropThrowable()
     {
         activateTimer = true;
         isPickedUp = false;
-        rb.useGravity = true;
     }
 
     public void OnCollisionEnter(Collision collision)
     {
-        XRDirectInteractor interactor = collision.transform.GetComponent<XRDirectInteractor>();
         Boss boss = collision.transform.GetComponent<Boss>();
 
         if (boss != null)
         {
             boss.Health(damage);
-            hasHit = true;
         }
-        else if(interactor == null)
-        {
-            hasHit = true;
-        }
+
+        Destroy(gameObject);
     }
 
     #endregion

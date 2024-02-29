@@ -16,27 +16,16 @@ public class PickupWeapon : MonoBehaviour
 
     public void Start()
     {
-        CreateItem();
+        currentItem = Instantiate(item, spawnPlace.position, Quaternion.identity);
     }
 
     public void Update()
-    {
-        CheckDistance();
-    }
-
-    public void CheckDistance()
     {
         float distance = Vector3.Distance(currentItem.transform.position, spawnPlace.position);
 
         if (distance >= spawnDistance)
         {
-            CreateItem();
+            currentItem = Instantiate(item, spawnPlace.position, Quaternion.identity);
         }
-    }
-
-    public void CreateItem()
-    {
-        currentItem = Instantiate(item, spawnPlace.position, Quaternion.identity);
-        currentItem.GetComponent<Rigidbody>().useGravity = false;
     }
 }
