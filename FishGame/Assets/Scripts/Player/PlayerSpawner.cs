@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class PlayerSpawner : MonoBehaviour
 {
-    [SerializeField]
-    private GameObject playerPrefab;
+    [Header("The prefab of the player")]
+    public GameObject playerPrefab;
 
-    public void Start()
+    //[Header("Code refrence keep empty")]
+    //public GameObject player;
+
+    public void Awake()
     {
         Instantiate(playerPrefab, transform.position, transform.rotation);
     }

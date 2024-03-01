@@ -5,9 +5,9 @@ using UnityEngine;
 public class EnvPrefab : MonoBehaviour
 {
     [Tooltip("The speed at wich the prefab is going to move")][Range(1,100)]
-    public float speed;
-    [Tooltip("The total distance before the prefab is deleted")][Range(1,300)]
-    public float maxDistance;
+    public float speed = 5;
+    [Tooltip("The total distance before the prefab is deleted")][Range(1,1000)]
+    public float maxDistance = 300;
 
     private Vector3 startPos;
 

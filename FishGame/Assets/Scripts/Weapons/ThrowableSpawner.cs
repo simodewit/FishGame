@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
-public class PickupWeapon : MonoBehaviour
+public class ThrowableSpawner : MonoBehaviour
 {
     [Tooltip("Place where the spear should be instantiated")]
     public Transform spawnPlace;

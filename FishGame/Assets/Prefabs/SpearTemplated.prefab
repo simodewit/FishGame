@@ -106,13 +106,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 787eea0f8189acd4f9664e40e03713de, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 20
   col: {fileID: 8123747483870925837}
   rb: {fileID: -3033414187623379944}
-  time: 0.5
-  hasFront: 1
+  damage: 20
+  colliderTime: 0.3
   turnSpeed: 5
+  playerTag: Player
+  hasFront: 1
   missedDistance: 200
+  sticks: 1
+  sticksInf: 0
+  stickTime: 10
 --- !u!114 &1539462862303642578
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -282,8 +286,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_ThrowVelocityScale: 7
-  m_ThrowAngularVelocityScale: 5
+  m_ThrowVelocityScale: 5
+  m_ThrowAngularVelocityScale: 3
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
