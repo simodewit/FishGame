@@ -37,6 +37,5 @@ public class PickupWeapon : MonoBehaviour
     public void CreateItem()
     {
         currentItem = Instantiate(item, spawnPlace.position, Quaternion.identity);
-        currentItem.GetComponent<Rigidbody>().useGravity = false;
     }
 }

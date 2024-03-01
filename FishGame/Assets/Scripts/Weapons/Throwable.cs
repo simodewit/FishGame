@@ -15,22 +15,16 @@ public class Throwable : MonoBehaviour
     public Rigidbody rb;
     [Tooltip("The time that the collider of this throwable is dissabled after letting go of the object. you want this to be as low as possible without colliding with the player")][Range(0,3)]
     public float time = 1;
-    [Tooltip("If this throwable has one side that should be in front this box should be checked")]
+    [Tooltip("If this throwable has one side that should be in front while thrown this box should be checked")]
     public bool hasFront;
     [Tooltip("The speed thats needed to turn the object if hasFront is enabled")][Range(0, 20)]
-    public float turnSpeed = 5;
+    public float turnSpeed = 3;
     [Tooltip("The amount of distance the throwable has to travel before destroyed if missed")][Range(0,1000)]
     public float missedDistance = 100;
-    [Tooltip("The seconds that the throwable has before destroyed after impact")][Range(0,60)]
-    public float destroyTime = 10;
-    [Tooltip("Decides wether the throwable stops on impact or not")]
-    public bool stayOnImpact;
 
     private bool activateTimer;
-    private bool isPickedUp;
-    private bool hasHit;
     private float timer;
-    private float timer2;
+    private bool hasThrown;
 
     #endregion
 
@@ -39,8 +33,6 @@ public class Throwable : MonoBehaviour
     public void Start()
     {
         timer = time;
-        rb.useGravity = false;
-        timer2 = destroyTime;
     }
 
     public void Update()
@@ -48,7 +40,6 @@ public class Throwable : MonoBehaviour
         Timer();
         FaceDirection();
         DoesntHit();
-        HitSomething();
     }
 
     #endregion
@@ -76,20 +67,10 @@ public class Throwable : MonoBehaviour
 
     public void FaceDirection()
     {
-        if (hasFront)
+        if (hasFront && hasThrown)
         {
-            if (isPickedUp)
-            {
-                transform.localRotation = new Quaternion(90, 0, 0, 0);
-            }
-            else
-            {
-                if (rb.velocity.magnitude >= turnSpeed)
-                {
-                    Vector3 lookTowards = transform.position + rb.velocity;
-                    transform.LookAt(lookTowards);
-                }
-            }
+            Vector3 lookTowards = transform.position + rb.velocity;
+            transform.LookAt(lookTowards);
         }
     }
 
@@ -109,51 +90,32 @@ public class Throwable : MonoBehaviour
 
     #endregion
 
-    public void HitSomething()
-    {
-        if (hasHit)
-        {
-            timer2 -= Time.deltaTime;
-
-            if (stayOnImpact)
-            {
-                transform.position = transform.position;
-            }
-            if (timer2 <= 0)
-            {
-                Destroy(gameObject);
-            }
-        }
-    }
-
-    #region extra code
+    #region inputs
 
     public void PickupThrowable()
     {
         col.enabled = false;
-        isPickedUp = true;
     }
 
     public void DropThrowable()
     {
+        hasThrown = true;
         activateTimer = true;
-        isPickedUp = false;
         rb.useGravity = true;
     }
 
+    #endregion
+
+    #region collision
+
     public void OnCollisionEnter(Collision collision)
     {
-        XRDirectInteractor interactor = collision.transform.GetComponent<XRDirectInteractor>();
         Boss boss = collision.transform.GetComponent<Boss>();
 
         if (boss != null)
         {
             boss.Health(damage);
-            hasHit = true;
-        }
-        else if(interactor == null)
-        {
-            hasHit = true;
+            Destroy(gameObject);
         }
     }
 

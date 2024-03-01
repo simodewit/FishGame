@@ -152,5 +152,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPlace: {fileID: 2947958752278425491}
-  item: {fileID: 5035696622424051370, guid: 58d8a6d1329e8e346b1ae4f5f468b732, type: 3}
+  item: {fileID: 5035696622424051370, guid: 4e79eea030fd1884da1eee10732a9b08, type: 3}
   spawnDistance: 1
