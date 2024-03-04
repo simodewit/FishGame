@@ -9,7 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2772834152248342365}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HoldPlace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -43,7 +43,7 @@ GameObject:
   - component: {fileID: -3033414187623379944}
   - component: {fileID: 6486521308118997450}
   - component: {fileID: 1539462862303642578}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: SpearTemplated
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,9 +110,11 @@ MonoBehaviour:
   rb: {fileID: -3033414187623379944}
   damage: 20
   colliderTime: 0.3
-  turnSpeed: 5
   playerTag: Player
+  isExplosive: 0
+  explosionRange: 0
   hasFront: 1
+  turnSpeed: 5
   missedDistance: 200
   sticks: 1
   sticksInf: 0
@@ -286,8 +288,8 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_ThrowVelocityScale: 5
-  m_ThrowAngularVelocityScale: 3
+  m_ThrowVelocityScale: 10
+  m_ThrowAngularVelocityScale: 2
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
@@ -371,6 +373,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: SpearTemplate
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 46764bdee07af354080c8040065d84c8,
+        type: 3}
+      propertyPath: m_Layer
+      value: 3
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

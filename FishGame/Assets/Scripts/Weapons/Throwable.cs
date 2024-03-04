@@ -18,14 +18,20 @@ public class Throwable : MonoBehaviour
     public int damage = 20;
     [Tooltip("The time that the collider of this throwable is dissabled after letting go of the object. you want this to be as low as possible without colliding with the player")][Range(0,3)]
     public float colliderTime = 1;
-    [Tooltip("The speed thats needed to turn the object if hasFront is enabled")][Range(0, 20)]
-    public float turnSpeed = 3;
     [Tooltip("The tag of the player")]
     public string playerTag;
+
+    [Header("Explosive data")]
+    [Tooltip("decides if this object is explosive")]
+    public bool isExplosive;
+    [Tooltip("The range of the explosion")]
+    public float explosionRange;
 
     [Header("Throw data")]
     [Tooltip("If this throwable has one side that should be in front while thrown this box should be checked")]
     public bool hasFront;
+    [Tooltip("The speed thats needed to turn the object if hasFront is enabled")][Range(0, 20)]
+    public float turnSpeed = 3;
     [Tooltip("The amount of distance the throwable has to travel before destroyed if missed")][Range(0, 1000)]
     public float missedDistance = 100;
 
@@ -179,6 +185,24 @@ public class Throwable : MonoBehaviour
         if (boss != null)
         {
             boss.Health(damage);
+            return;
+        }
+
+        if (isExplosive)
+        {
+            //particle enable
+
+            Collider[] cols = Physics.OverlapSphere(transform.position, explosionRange);
+
+            foreach (Collider col in cols)
+            {
+                Weakspot spot = col.GetComponent<Weakspot>();
+
+                if (spot != null)
+                {
+                    spot.Health(damage);
+                }
+            }
         }
     }
 
