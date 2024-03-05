@@ -4,25 +4,29 @@ using UnityEngine;
 
 public class Boss : MonoBehaviour
 {
-    [Tooltip("The total hp of the boss")][Range(0,1000)]
+    [Tooltip("The total hp of the boss")][Range(0,5000)]
     public int hp = 500;
     [Tooltip("The speed at wich the boss is moving away from the boat")]
-    public float moveSpeed;
+    public float moveSpeed = .5f;
     [Tooltip("The minimum amount of seconds to start another attack combo")]
-    public float minAttackTime;
+    public float minAttackTime = 10;
     [Tooltip("The maximum amount of seconds to start another attack combo")]
-    public float maxAttackTime;
+    public float maxAttackTime = 30;
     [Tooltip("The tag that the boat is using")]
-    public string boatTag;
+    public string boatTag = "Boat";
+    [Tooltip("The total distance the boss has to have traveled forward to escape")]
+    public float maxDistance = 20;
 
+    private Vector3 startPos;
     private float timer;
-    public float speed;
-    public bool isAttacking;
+    private float speed;
+    private bool isAttacking;
 
     public void Start()
     {
+        startPos = transform.position;
         timer = Random.Range(minAttackTime, maxAttackTime);
-        speed = moveSpeed;
+        ChangeSpeed(moveSpeed);
     }
 
     public void Update()
@@ -32,6 +36,13 @@ public class Boss : MonoBehaviour
 
     public void Move()
     {
+        float distance = Vector3.Distance(transform.position, startPos);
+
+        if (distance > maxDistance)
+        {
+            //game over
+        }
+
         if (!isAttacking)
         {
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
@@ -46,6 +57,10 @@ public class Boss : MonoBehaviour
                 //start attack
             }
         }
+        else
+        {
+
+        }
     }
 
     public void Health(int damage)
@@ -54,16 +69,23 @@ public class Boss : MonoBehaviour
 
         if (hp <= 0)
         {
-            //game over
+            //game won
             Destroy(gameObject);
         }
     }
 
-    public void OnTriggerEnter(Collider other)
+    public void ChangeSpeed(float nextSpeed)
     {
-        if (other.transform.tag == boatTag)
+        speed = nextSpeed;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        Debug.Log(collision.transform.tag);
+
+        if (collision.transform.tag == boatTag)
         {
-            speed = moveSpeed;
+            ChangeSpeed(moveSpeed);
         }
     }
 }

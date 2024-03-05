@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 3006878959946755003}
   - component: {fileID: 2493861305522491783}
   - component: {fileID: 1091800651432103300}
+  - component: {fileID: 1698238819520477626}
   - component: {fileID: 1661001146046999154}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boss model
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -110,6 +111,33 @@ BoxCollider:
   serializedVersion: 3
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &1698238819520477626
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 467999187826725764}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!114 &1661001146046999154
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -123,12 +151,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 300
-  moveSpeed: 0
+  moveSpeed: 0.5
   minAttackTime: 60
   maxAttackTime: 120
   boatTag: Boat
-  speed: 0
-  isAttacking: 0
+  maxDistance: 20
 --- !u!1 &733750896640759078
 GameObject:
   m_ObjectHideFlags: 0
@@ -138,7 +165,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 132953272353311144}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Boss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -172,7 +199,7 @@ GameObject:
   - component: {fileID: 8809732212471131664}
   - component: {fileID: 4254707946663801554}
   - component: {fileID: 3377931400174494100}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Texture
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -255,7 +282,7 @@ GameObject:
   - component: {fileID: 2609135067948951417}
   - component: {fileID: 7045410492908935751}
   - component: {fileID: 6236371388501743739}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Armor heavily Damaged
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -338,7 +365,7 @@ GameObject:
   - component: {fileID: 4109434023702888347}
   - component: {fileID: 6817006601530958242}
   - component: {fileID: 6313690202446089350}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Armor Damaged
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -421,7 +448,7 @@ GameObject:
   - component: {fileID: 7778930418481631337}
   - component: {fileID: 2284332000299442348}
   - component: {fileID: 4312999975461782250}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Armor heavily Damaged
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -504,7 +531,7 @@ GameObject:
   - component: {fileID: 2527701119244522641}
   - component: {fileID: 5193907980576879380}
   - component: {fileID: 3483945096753510109}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Armor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -587,7 +614,7 @@ GameObject:
   - component: {fileID: 6092660698080673804}
   - component: {fileID: 2638363215735865152}
   - component: {fileID: 649207266735101661}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Armor
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -670,7 +697,7 @@ GameObject:
   - component: {fileID: 6545809908553323422}
   - component: {fileID: 5245970462698589164}
   - component: {fileID: 791113989361363545}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Armor Damaged
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -753,7 +780,7 @@ GameObject:
   - component: {fileID: 1331170753540688701}
   - component: {fileID: 2904545790766600542}
   - component: {fileID: 2628746289330007555}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Weakspot (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -835,7 +862,7 @@ GameObject:
   - component: {fileID: 2679428358841779816}
   - component: {fileID: 2297005375916934172}
   - component: {fileID: 6230336057647511507}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Weakspot
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -917,7 +944,7 @@ GameObject:
   - component: {fileID: 9151044189225111870}
   - component: {fileID: 8683919062438136291}
   - component: {fileID: 4068538983538872119}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Texture (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}

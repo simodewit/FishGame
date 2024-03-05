@@ -172,7 +172,7 @@ public class Throwable : MonoBehaviour
 
     public void OnCollisionEnter(Collision collision)
     {
-        if (collision.transform.tag == playerTag)
+        if (collision.transform.GetComponent<XRGrabInteractable>() != null)
         {
             return;
         }
