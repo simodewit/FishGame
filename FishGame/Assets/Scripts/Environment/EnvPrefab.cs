@@ -23,7 +23,7 @@ public class EnvPrefab : MonoBehaviour
 
     public void Move()
     {
-        transform.Translate(0,0,speed * Time.deltaTime);
+        transform.Translate(-transform.forward * speed * Time.deltaTime);
 
         float distance = Vector3.Distance(transform.position, startPos);
         if (distance >= maxDistance)

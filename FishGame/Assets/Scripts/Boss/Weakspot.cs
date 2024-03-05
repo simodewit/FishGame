@@ -26,6 +26,21 @@ public class Weakspot : MonoBehaviour
         if (isExplosive)
         {
             hp -= damage;
+
+            foreach (var layer in layers)
+            {
+                if (layer.hp >= hp && !layer.hasLessHP)
+                {
+                    layer.model.SetActive(true);
+                    layer.hasLessHP = true;
+                    return;
+                }
+
+                if (layer.hp >= hp && layer.hasLessHP && layer.model != null)
+                {
+                    Destroy(layer.model);
+                }
+            }
         }
 
         if (hp <= 0)
@@ -36,21 +51,6 @@ public class Weakspot : MonoBehaviour
             {
                 int damageToDo = (int)(damage * damageMultiplier);
                 boss.Health(damageToDo);
-            }
-
-            return;
-        }
-
-        foreach (var layer in layers)
-        {
-            if (layer.hp >= hp && !layer.hasLessHP)
-            {
-                layer.model.SetActive(true);
-            }
-
-            if (layer.hp >= hp && layer.hasLessHP && layer.model != null)
-            {
-                Destroy(layer.model);
             }
         }
     }

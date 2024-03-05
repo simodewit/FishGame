@@ -185,7 +185,7 @@ MonoBehaviour:
   col: {fileID: 1831253894230034971}
   rb: {fileID: 8288410316880537900}
   damage: 20
-  colliderTime: 1
+  colliderTime: 0.5
   playerTag: Player
   canDamageBoss: 0
   isExplosive: 1
@@ -193,6 +193,7 @@ MonoBehaviour:
   hasFront: 0
   turnSpeed: 3
   missedDistance: 100
+  maxSpeed: 20
   sticks: 0
   sticksInf: 0
   stickTime: 0
