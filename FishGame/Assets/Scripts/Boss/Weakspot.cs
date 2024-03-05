@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 
 public class Weakspot : MonoBehaviour
@@ -20,28 +21,34 @@ public class Weakspot : MonoBehaviour
 
     #region health
 
-    public void Health(int damage)
+    public void Health(int damage, bool isExplosive)
     {
-        hp -= damage;
+        if (isExplosive)
+        {
+            hp -= damage;
+        }
 
         if (hp <= 0)
         {
             hp = 0;
 
-            int damageToDo = (int)(damage * damageMultiplier);
-            boss.Health(damageToDo);
+            if (!isExplosive)
+            {
+                int damageToDo = (int)(damage * damageMultiplier);
+                boss.Health(damageToDo);
+            }
 
             return;
         }
 
         foreach (var layer in layers)
         {
-            if (layer.hp > hp && !layer.hasLessHP)
+            if (layer.hp >= hp && !layer.hasLessHP)
             {
                 layer.model.SetActive(true);
             }
 
-            if (layer.hp > hp && layer.hasLessHP && layer.model != null)
+            if (layer.hp >= hp && layer.hasLessHP && layer.model != null)
             {
                 Destroy(layer.model);
             }

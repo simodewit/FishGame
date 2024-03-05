@@ -111,6 +111,7 @@ MonoBehaviour:
   damage: 20
   colliderTime: 0.3
   playerTag: Player
+  canDamageBoss: 1
   isExplosive: 0
   explosionRange: 0
   hasFront: 1
@@ -261,8 +262,8 @@ MonoBehaviour:
   m_AngularVelocityScale: 1
   m_TrackPosition: 1
   m_SmoothPosition: 1
-  m_SmoothPositionAmount: 8
-  m_TightenPosition: 0.1
+  m_SmoothPositionAmount: 20
+  m_TightenPosition: 0.05
   m_TrackRotation: 1
   m_SmoothRotation: 0
   m_SmoothRotationAmount: 8

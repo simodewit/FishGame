@@ -20,6 +20,8 @@ public class Throwable : MonoBehaviour
     public float colliderTime = 1;
     [Tooltip("The tag of the player")]
     public string playerTag;
+    [Tooltip("Decides if the object can directly damage the boss")]
+    public bool canDamageBoss;
 
     [Header("Explosive data")]
     [Tooltip("decides if this object is explosive")]
@@ -182,16 +184,13 @@ public class Throwable : MonoBehaviour
 
         Boss boss = collision.transform.GetComponent<Boss>();
 
-        if (boss != null)
+        if (boss != null && canDamageBoss)
         {
             boss.Health(damage);
-            return;
         }
 
         if (isExplosive)
         {
-            //particle enable
-
             Collider[] cols = Physics.OverlapSphere(transform.position, explosionRange);
 
             foreach (Collider col in cols)
@@ -200,8 +199,17 @@ public class Throwable : MonoBehaviour
 
                 if (spot != null)
                 {
-                    spot.Health(damage);
+                    spot.Health(damage, isExplosive);
                 }
+            }
+        }
+        else
+        {
+            Weakspot spot = collision.transform.GetComponent<Weakspot>();
+
+            if (spot != null)
+            {
+                spot.Health(damage, isExplosive);
             }
         }
     }
