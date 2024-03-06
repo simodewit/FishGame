@@ -28,8 +28,6 @@ public class Throwable : MonoBehaviour
     public bool canSlowDown;
     [Tooltip("The slowed speed multiplier")]
     public float speedModifier;
-    [Tooltip("The time it slows the boss down")]
-    public float slowDownTime;
 
     [Header("Explosive data")]
     [Tooltip("decides if this object is explosive")]
@@ -61,6 +59,7 @@ public class Throwable : MonoBehaviour
     private bool hasHit;
     private float colliderTimer;
     private float stickTimer;
+    private Boss boss;
 
     #endregion
 
@@ -154,8 +153,12 @@ public class Throwable : MonoBehaviour
 
         if (!sticks)
         {
+            if (canSlowDown)
+            {
+                boss.speedModifier = boss.speed;
+            }
+
             Destroy(gameObject);
-            return;
         }
 
         if (!sticksInf)
@@ -164,6 +167,11 @@ public class Throwable : MonoBehaviour
 
             if (stickTimer <= 0)
             {
+                if (canSlowDown)
+                {
+                    boss.speedModifier = boss.speed;
+                }
+
                 Destroy(gameObject);
             }
         }
@@ -192,7 +200,7 @@ public class Throwable : MonoBehaviour
             rb.isKinematic = true;
         }
 
-        Boss boss = collision.transform.GetComponent<Boss>();
+        boss = collision.transform.GetComponent<Boss>();
 
         if (boss != null)
         {
@@ -204,7 +212,6 @@ public class Throwable : MonoBehaviour
             if (canSlowDown)
             {
                 boss.speedModifier = speedModifier;
-                boss.speedTimer = slowDownTime;
             }
         }
 

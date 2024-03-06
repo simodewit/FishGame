@@ -45,8 +45,8 @@ public class Boss : MonoBehaviour
     [Tooltip("The maximum amount of seconds to wait before moving")]
     public float maxWaitTime = 15;
 
-    [Header("Code refrences")]
-    public float speedTimer;
+    [Header("Code refrences dont change")]
+    public float speed;
 
     //privates
     private float attackTimer;
@@ -55,9 +55,8 @@ public class Boss : MonoBehaviour
     private bool isAttacking;
     private bool canAttack;
 
-    private Animation currentAnimation;
     private Transform nextPlaceToBe;
-    private Queue<Attack> attackQueue;
+    private Queue<Attack> attackQueue = new Queue<Attack>();
 
     #endregion
 
@@ -67,12 +66,19 @@ public class Boss : MonoBehaviour
     {
         attackTimer = Random.Range(minAttackTime, maxAttackTime);
         runTimer = Random.Range(minRunTime, maxRunTime);
+        pointTimer = Random.Range(minWaitTime, maxWaitTime);
+
+        int index = Random.Range(0, attackPlaces.Length);
+        nextPlaceToBe = attackPlaces[index];
+        speed = speedModifier;
     }
 
     public void Update()
     {
         DecideNextMove();
         Queue();
+        Moving();
+        SpeedModifier();
     }
 
     #endregion
@@ -99,8 +105,9 @@ public class Boss : MonoBehaviour
 
         if (runTimer <= 0)
         {
-            int index = Random.Range(0, runaway.Length);
+            runTimer = Random.Range(minRunTime, maxRunTime);
 
+            int index = Random.Range(0, runaway.Length);
             attackQueue.Enqueue(runaway[index]);
         }
 
@@ -108,8 +115,9 @@ public class Boss : MonoBehaviour
 
         if (attackTimer <= 0)
         {
-            int index = Random.Range(0, attacks.Length);
+            attackTimer = Random.Range(minAttackTime, maxAttackTime);
 
+            int index = Random.Range(0, attacks.Length);
             attackQueue.Enqueue(attacks[index]);
         }
     }
@@ -120,40 +128,30 @@ public class Boss : MonoBehaviour
 
     public void Moving()
     {
+        transform.position = agent.transform.position;
+
         if (isAttacking)
         {
+            if (!agent.isStopped)
+            {
+                agent.isStopped = true;
+                agent.ResetPath();
+            }
+
             return;
         }
-
-        if (!currentAnimation.isPlaying)
-        {
-            currentAnimation = swimming;
-            swimming.Play();
-        }
-
-        if (speedTimer <= 0)
-        {
-            speedTimer = 0;
-
-            if (speedModifier != 1)
-            {
-                speedModifier = 1;
-            }
-        }
-        else
-        {
-            speedTimer -= Time.deltaTime;
-        }
-
-        agent.speed = normalSpeed * speedModifier;
 
         float distance = Vector3.Distance(transform.position, nextPlaceToBe.position);
 
         if (distance <= pointDistance)
         {
-            agent.isStopped = true;
-            agent.ResetPath();
             canAttack = true;
+
+            if (!agent.isStopped)
+            {
+                agent.isStopped = true;
+                agent.ResetPath();
+            }
 
             pointTimer -= Time.deltaTime;
 
@@ -161,8 +159,8 @@ public class Boss : MonoBehaviour
             {
                 int index = Random.Range(0, attackPlaces.Length);
                 nextPlaceToBe = attackPlaces[index];
-                agent.destination = nextPlaceToBe.position;
 
+                agent.destination = nextPlaceToBe.position;
                 pointTimer = Random.Range(minWaitTime, maxWaitTime);
 
                 canAttack = false;
@@ -176,6 +174,15 @@ public class Boss : MonoBehaviour
 
     #endregion
 
+    #region speed
+
+    public void SpeedModifier()
+    {
+        agent.speed = normalSpeed * speedModifier;
+    }
+
+    #endregion
+
     #region queue
 
     public void Queue()
@@ -185,17 +192,11 @@ public class Boss : MonoBehaviour
             return;
         }
 
-        if (currentAnimation.isPlaying)
-        {
-            return;
-        }
-
         if (attackQueue.Count > 0)
         {
             isAttacking = true;
 
-            Attack attack = attackQueue.Dequeue();
-            currentAnimation = attack.animation;
+            attackQueue.Dequeue();
             //turn on animation;
         }
         else
