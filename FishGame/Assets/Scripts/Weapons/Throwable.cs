@@ -23,6 +23,14 @@ public class Throwable : MonoBehaviour
     [Tooltip("Decides if the object can directly damage the boss")]
     public bool canDamageBoss;
 
+    [Header("Slow down data")]
+    [Tooltip("Decides if the object can slow the boss down")]
+    public bool canSlowDown;
+    [Tooltip("The slowed speed multiplier")]
+    public float speedModifier;
+    [Tooltip("The time it slows the boss down")]
+    public float slowDownTime;
+
     [Header("Explosive data")]
     [Tooltip("decides if this object is explosive")]
     public bool isExplosive;
@@ -112,11 +120,6 @@ public class Throwable : MonoBehaviour
 
     public void FaceDirection()
     {
-        //if (rb.velocity.magnitude >= maxSpeed)
-        //{
-        //    rb.velocity = rb.velocity.normalized * maxSpeed;
-        //}
-
         if (hasFront && flies)
         {
             Vector3 lookTowards = transform.position + rb.velocity;
@@ -191,9 +194,18 @@ public class Throwable : MonoBehaviour
 
         Boss boss = collision.transform.GetComponent<Boss>();
 
-        if (boss != null && canDamageBoss)
+        if (boss != null)
         {
-            boss.Health(damage);
+            if (canDamageBoss)
+            {
+                boss.Health(damage);
+            }
+
+            if (canSlowDown)
+            {
+                boss.speedModifier = speedModifier;
+                boss.speedTimer = slowDownTime;
+            }
         }
 
         if (isExplosive)
