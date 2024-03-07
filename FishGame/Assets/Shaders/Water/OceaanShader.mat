@@ -50,7 +50,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     - _FoamTexture:
         m_Texture: {fileID: 2800000, guid: dd261be1f4580154590771983fab9b40, type: 3}
-        m_Scale: {x: 100, y: 100}
+        m_Scale: {x: 50, y: 50}
         m_Offset: {x: 0, y: 0}
     - _MainTex:
         m_Texture: {fileID: 0}
@@ -102,6 +102,9 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
+    - _CrestFalloff: 2
+    - _CrestOffset: 2.24
+    - _CrestSize: 4.31
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
@@ -109,12 +112,13 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _FoamBands: 2.1
-    - _FoamFallOff: 6.42
-    - _FoamRemoval: 0.13
-    - _FoamWidth: 11.32
+    - _Extra_expersion: 0.53
+    - _FoamBands: 1
+    - _FoamFallOff: 5.5
+    - _FoamRemoval: 0.21
+    - _FoamWidth: 15.59
     - _Frequency: 0.16
-    - _FrequencySecond: 0.2
+    - _FrequencySecond: 0.32
     - _GlossMapScale: 0
     - _Glossiness: 0
     - _GlossyReflections: 0
@@ -124,14 +128,14 @@ Material:
     - _QueueControl: 0
     - _QueueOffset: 0
     - _ReceiveShadows: 1
-    - _RippleSpeed: 0.05
+    - _RippleSpeed: 0.09
     - _RippleStrength: 0.4
-    - _RippleTiling: 0.05
+    - _RippleTiling: 0.2
     - _Smoothness: 0.5
     - _SmoothnessTextureChannel: 0
     - _SpecularHighlights: 1
     - _Speed: 0.86
-    - _SpeedSecond: 2.06
+    - _SpeedSecond: 1
     - _SrcBlend: 1
     - _SrcBlendAlpha: 1
     - _Steepness: 0.03
