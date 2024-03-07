@@ -42,8 +42,6 @@ public class Throwable : MonoBehaviour
     public float turnSpeed = 3;
     [Tooltip("The amount of distance the throwable has to travel before destroyed if missed")][Range(0, 1000)]
     public float missedDistance = 100;
-    [Tooltip("The maximum speed of the throwable while flying")]
-    public float maxSpeed;
 
     [Header("Stick data")]
     [Tooltip("Decides if the throwable stays in place after impact")]

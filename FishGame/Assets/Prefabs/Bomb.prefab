@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4582527923763403208}
   - component: {fileID: 1764460628789505282}
   - component: {fileID: 5826018813421757577}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: 'bomb '
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -189,13 +189,11 @@ MonoBehaviour:
   canDamageBoss: 0
   canSlowDown: 0
   speedModifier: 0
-  slowDownTime: 0
   isExplosive: 1
   explosionRange: 3
   hasFront: 0
   turnSpeed: 3
   missedDistance: 100
-  maxSpeed: 20
   sticks: 0
   sticksInf: 0
   stickTime: 0
@@ -368,7 +366,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_ThrowVelocityScale: 10
+  m_ThrowVelocityScale: 7
   m_ThrowAngularVelocityScale: 2
   m_ForceGravityOnDetach: 0
   m_RetainTransformParent: 1
@@ -400,10 +398,10 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8771171371387252318}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.7071068, y: 0, z: 0, w: 0.7071068}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1400294319893666527}
-  m_LocalEulerAnglesHint: {x: 90, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

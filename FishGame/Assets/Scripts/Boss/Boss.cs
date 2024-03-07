@@ -91,6 +91,7 @@ public class Boss : MonoBehaviour
 
         if (hp <= 0)
         {
+            Destroy(gameObject);
             //game won
         }
     }

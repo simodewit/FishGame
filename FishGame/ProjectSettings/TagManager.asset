@@ -13,10 +13,10 @@ TagManager:
   - Water
   - UI
   - Player
-  - Boss
-  - NavMesh
-  - 
-  - 
+  - BossModel
+  - NavMeshFloor
+  - DamageLayer
+  - Particles
   - 
   - 
   - 
