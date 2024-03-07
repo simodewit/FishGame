@@ -63,6 +63,6 @@ public class ThrowableSpawner : MonoBehaviour
 
     public void CreateItem()
     {
-        currentItem = Instantiate(item, spawnPlace.position, Quaternion.identity);
+        currentItem = Instantiate(item, spawnPlace.position, spawnPlace.rotation);
     }
 }

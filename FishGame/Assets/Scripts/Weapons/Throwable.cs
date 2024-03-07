@@ -151,7 +151,7 @@ public class Throwable : MonoBehaviour
 
         if (!sticks)
         {
-            if (canSlowDown)
+            if (canSlowDown && boss != null)
             {
                 boss.speedModifier = boss.speed;
             }
@@ -165,7 +165,7 @@ public class Throwable : MonoBehaviour
 
             if (stickTimer <= 0)
             {
-                if (canSlowDown)
+                if (canSlowDown && boss != null)
                 {
                     boss.speedModifier = boss.speed;
                 }
