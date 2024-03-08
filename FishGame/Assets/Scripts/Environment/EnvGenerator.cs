@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class EnvGenerator : MonoBehaviour
 {
+    #region variables
+
     [Tooltip("All the environment prefabs that can be randomily generated")]
     public GameObject[] prefabs;
     [Tooltip("The minimum seconds to wait before spawning another prefab")][Range(0, 500)]
@@ -15,7 +17,12 @@ public class EnvGenerator : MonoBehaviour
     [Tooltip("The maximum distance to have from the ship to the instantiated prefabs")][Range(15, 300)]
     public float maxDistance = 100;
 
+    //privates
     private float timer;
+
+    #endregion
+
+    #region start and update
 
     public void Start()
     {
@@ -27,6 +34,10 @@ public class EnvGenerator : MonoBehaviour
     {
         Generator();
     }
+
+    #endregion
+
+    #region generator
 
     public void Generator()
     {
@@ -56,4 +67,6 @@ public class EnvGenerator : MonoBehaviour
             }
         }
     }
+
+    #endregion
 }

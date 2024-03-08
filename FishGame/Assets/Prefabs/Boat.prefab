@@ -169,5 +169,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   minParticleTime: 5
   maxParticleTime: 10
-  waterParticles:
-  - {fileID: 0}
+  waterParticles: []
