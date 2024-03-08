@@ -54,50 +54,53 @@ public class Table : MonoBehaviour
 
     public void ChangeUIState()
     {
-        if (lastState != state)
+        if (lastState == state)
         {
-            foreach (var i in info)
+            return;
+        }
+
+        lastState = state;
+
+        foreach (var i in info)
+        {
+            if (i.state != state)
             {
-                if (i.state == state)
-                {
-                    foreach (GameObject g in i.turnOn)
-                    {
-                        g.SetActive(true);
-                    }
-
-                    foreach (GameObject g in i.turnOff)
-                    {
-                        g.SetActive(false);
-                    }
-                }
-
-                if (i.shouldTeleport)
-                {
-                    player.transform.position = i.placeToTeleport.position;
-                }
-
-                if (i.canMove)
-                {
-                    moveComponent.enabled = false;
-                    turnComponent.enabled = false;
-                }
-                else
-                {
-                    moveComponent.enabled = true;
-                    turnComponent.enabled = true;
-                }
-
-                if (i.spawnBoss)
-                {
-                    if (i.bossPrefab != null && i.spawnPlaceBoss != null)
-                    {
-                        GameObject boss = Instantiate(i.bossPrefab, i.spawnPlaceBoss.position, i.spawnPlaceBoss.rotation);
-                        boss.GetComponent<Boss>().attackPlaces = i.bossAttackPlaces;
-                    }
-                }
+                continue;
             }
 
-            lastState = state;
+            foreach (GameObject g in i.turnOn)
+            {
+                g.SetActive(true);
+            }
+
+            foreach (GameObject g in i.turnOff)
+            {
+                g.SetActive(false);
+            }
+
+            if (i.shouldTeleport)
+            {
+                player.transform.position = i.placeToTeleport.position;
+            }
+
+            if (!i.canMove)
+            {
+                moveComponent.enabled = false;
+                turnComponent.enabled = false;
+            }
+            else
+            {
+                moveComponent.enabled = true;
+                turnComponent.enabled = true;
+            }
+
+            if (i.bossPrefab != null && i.spawnPlaceBoss != null && i.spawnBoss)
+            {
+                GameObject boss = Instantiate(i.bossPrefab, i.spawnPlaceBoss.position, i.spawnPlaceBoss.rotation);
+                boss.GetComponent<Boss>().attackPlaces = i.bossAttackPlaces;
+            }
+
+            return;
         }
     }
 
