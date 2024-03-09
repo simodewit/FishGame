@@ -167,10 +167,7 @@ MonoBehaviour:
   hp: 300
   pointDistance: 1
   boatTag: Boat
-  attackPlaces:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  attackPlaces: []
   agent: {fileID: 2271361040179290097}
   attacks:
   - {fileID: 0}
@@ -185,8 +182,8 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   swimming: {fileID: 0}
-  normalSpeed: 1
-  speedModifier: 3
+  normalSpeed: 3
+  speedModifier: 2
   minAttackTime: 60
   maxAttackTime: 120
   minRunTime: 30

@@ -97,7 +97,7 @@ public class Table : MonoBehaviour
             if (i.bossPrefab != null && i.spawnPlaceBoss != null && i.spawnBoss)
             {
                 GameObject boss = Instantiate(i.bossPrefab, i.spawnPlaceBoss.position, i.spawnPlaceBoss.rotation);
-                boss.GetComponent<Boss>().attackPlaces = i.bossAttackPlaces;
+                boss.GetComponentInChildren<Boss>().attackPlaces = i.bossAttackPlaces;
             }
 
             return;
