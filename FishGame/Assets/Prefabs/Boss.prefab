@@ -165,25 +165,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hp: 300
-  pointDistance: 1
+  pointDistance: 0.3
   boatTag: Boat
   attackPlaces: []
   agent: {fileID: 2271361040179290097}
   attacks:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: d70d0974153dcb64ba2922330787bd64, type: 2}
   runaway:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  attackCombos:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 11400000, guid: f6e56e1d07d28fd48bcc39cb566ae89c, type: 2}
+  attackCombos: []
   swimming: {fileID: 0}
   normalSpeed: 3
   speedModifier: 2
+  MinSlowHits: 3
+  slowHitsTime: 5
+  escapePlace: {fileID: 0}
   minAttackTime: 60
   maxAttackTime: 120
   minRunTime: 30
@@ -191,6 +187,9 @@ MonoBehaviour:
   minWaitTime: 5
   maxWaitTime: 15
   speed: 0
+  slowHits: 0
+  table: {fileID: 0}
+  state: 0
 --- !u!1 &725027255568046677
 GameObject:
   m_ObjectHideFlags: 0

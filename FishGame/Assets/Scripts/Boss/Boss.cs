@@ -3,8 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
+public enum bossState
+{
+    moving,
+    notMoving,
+    attacking,
+    tryEscaping,
+    escaping
+}
+
 public class Boss : MonoBehaviour
 {
+    //main functions
     #region variables
 
     [Header("General info")]
@@ -30,6 +40,12 @@ public class Boss : MonoBehaviour
     public float normalSpeed;
     [Tooltip("The speed multiplier of the boss")]
     public float speedModifier;
+    [Tooltip("Has to hit this many slow objects to keep boss here")]
+    public int MinSlowHits;
+    [Tooltip("The time that the boss waits before deciding to leave or stay")]
+    public float slowHitsTime;
+    [Tooltip("the place to go when escaping")]
+    public Transform escapePlace;
 
     [Header("Wait times")]
     [Tooltip("The minimum amount of seconds to start another attack combo")]
@@ -46,14 +62,20 @@ public class Boss : MonoBehaviour
     public float maxWaitTime = 15;
 
     [Header("Code refrences dont change")]
+    [Tooltip("The speed of the boss")]
     public float speed;
+    [Tooltip("The total hits from slow items")]
+    public int slowHits;
+    [Tooltip("The table script")]
+    public Table table;
 
     //privates
     private float attackTimer;
     private float runTimer;
     private float pointTimer;
-    private bool isAttacking;
-    private bool canAttack;
+    private float escapeTimer;
+
+    [SerializeField]private bossState state;
 
     private Transform nextPlaceToBe;
     private Queue<Attack> attackQueue = new Queue<Attack>();
@@ -67,6 +89,7 @@ public class Boss : MonoBehaviour
         attackTimer = Random.Range(minAttackTime, maxAttackTime);
         runTimer = Random.Range(minRunTime, maxRunTime);
         pointTimer = Random.Range(minWaitTime, maxWaitTime);
+        escapeTimer = slowHitsTime;
 
         int index = Random.Range(0, attackPlaces.Length);
         nextPlaceToBe = attackPlaces[index];
@@ -79,10 +102,12 @@ public class Boss : MonoBehaviour
         Queue();
         Moving();
         SpeedModifier();
+        Escaping();
     }
 
     #endregion
 
+    //support functions
     #region HP
 
     public void Health(int damage)
@@ -98,6 +123,26 @@ public class Boss : MonoBehaviour
 
     #endregion
 
+    #region reset navmesh
+    public void ResetNavmesh()
+    {
+        agent.transform.position = nextPlaceToBe.position;
+        agent.isStopped = true;
+        agent.ResetPath();
+    }
+
+    #endregion
+
+    #region speed
+
+    public void SpeedModifier()
+    {
+        agent.speed = normalSpeed * speedModifier;
+    }
+
+    #endregion
+
+    //main functions
     #region attack decider
 
     public void DecideNextMove()
@@ -131,12 +176,11 @@ public class Boss : MonoBehaviour
     {
         transform.position = agent.transform.position;
 
-        if (isAttacking)
+        if (state == bossState.attacking || state == bossState.tryEscaping || state == bossState.escaping)
         {
             if (!agent.isStopped)
             {
-                agent.isStopped = true;
-                agent.ResetPath();
+                ResetNavmesh();
             }
 
             return;
@@ -146,12 +190,11 @@ public class Boss : MonoBehaviour
 
         if (distance <= pointDistance)
         {
-            canAttack = true;
+            state = bossState.notMoving;
 
             if (!agent.isStopped)
             {
-                agent.isStopped = true;
-                agent.ResetPath();
+                ResetNavmesh();
             }
 
             pointTimer -= Time.deltaTime;
@@ -163,23 +206,60 @@ public class Boss : MonoBehaviour
 
                 agent.destination = nextPlaceToBe.position;
                 pointTimer = Random.Range(minWaitTime, maxWaitTime);
-
-                canAttack = false;
             }
         }
         else
         {
             agent.destination = nextPlaceToBe.position;
+
+            if (state != bossState.moving)
+            {
+                state = bossState.moving;
+            }
         }
     }
 
     #endregion
 
-    #region speed
+    #region escaping
 
-    public void SpeedModifier()
+    public void Escaping()
     {
-        agent.speed = normalSpeed * speedModifier;
+        if (state == bossState.tryEscaping)
+        {
+            escapeTimer -= Time.deltaTime;
+
+            if (escapeTimer <= 0)
+            {
+                escapeTimer = slowHitsTime;
+
+                if (slowHits <= MinSlowHits)
+                {
+                    state = bossState.escaping;
+                }
+                else
+                {
+                    state = bossState.notMoving;
+                }
+            }
+        }
+        else
+        {
+            slowHits = 0;
+        }
+
+        if (state == bossState.escaping)
+        {
+            agent.destination = escapePlace.position;
+
+            float d = Vector3.Distance(agent.destination, escapePlace.position);
+
+            if (d <= pointDistance)
+            {
+                table.state = stateOfUI.inUi;
+                Destroy(gameObject);
+            }
+        }
     }
 
     #endregion
@@ -188,21 +268,29 @@ public class Boss : MonoBehaviour
 
     public void Queue()
     {
-        if (!canAttack)
+        if (state != bossState.notMoving)
         {
             return;
         }
 
         if (attackQueue.Count > 0)
         {
-            isAttacking = true;
+            Attack a = attackQueue.Dequeue();
 
-            attackQueue.Dequeue();
+            if (a.escapeAttack)
+            {
+                state = bossState.tryEscaping;
+            }
+            else
+            {
+                state = bossState.attacking;
+            }
+
             //turn on animation;
         }
         else
         {
-            isAttacking = false;
+            state = bossState.notMoving;
         }
     }
 

@@ -10,7 +10,9 @@ public enum stateOfUI
     boss1Selected,
     boss2Selected,
     boss3Selected,
-    isPlaying
+    isPlayingBoss1,
+    isPlayingBoss2,
+    isPlayingBoss3,
 }
 
 public class Table : MonoBehaviour
@@ -97,7 +99,11 @@ public class Table : MonoBehaviour
             if (i.bossPrefab != null && i.spawnPlaceBoss != null && i.spawnBoss)
             {
                 GameObject boss = Instantiate(i.bossPrefab, i.spawnPlaceBoss.position, i.spawnPlaceBoss.rotation);
-                boss.GetComponentInChildren<Boss>().attackPlaces = i.bossAttackPlaces;
+                Boss b = boss.GetComponentInChildren<Boss>();
+
+                b.attackPlaces = i.bossAttackPlaces;
+                b.escapePlace = i.spawnPlaceBoss;
+                b.table = this;
             }
 
             return;

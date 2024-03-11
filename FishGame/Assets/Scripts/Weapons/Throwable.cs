@@ -156,6 +156,7 @@ public class Throwable : MonoBehaviour
             if (canSlowDown && boss != null)
             {
                 boss.speedModifier = boss.speed;
+                boss.slowHits += 1;
             }
 
             Destroy(gameObject);
@@ -170,6 +171,7 @@ public class Throwable : MonoBehaviour
                 if (canSlowDown && boss != null)
                 {
                     boss.speedModifier = boss.speed;
+                    boss.slowHits += 1;
                 }
 
                 Destroy(gameObject);
