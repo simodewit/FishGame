@@ -116,6 +116,7 @@ public class Boss : MonoBehaviour
 
         if (hp <= 0)
         {
+            table.state = stateOfUI.inUi;
             Destroy(gameObject);
             //game won
         }

@@ -3726,11 +3726,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   prefabs:
-  - {fileID: 9222155237348354341, guid: 8bd04c3e2b0c2704fbd830fcc37ba42d, type: 3}
+  - prefab: {fileID: 9222155237348354341, guid: 8bd04c3e2b0c2704fbd830fcc37ba42d,
+      type: 3}
+    bothSides: 0
+    shouldRotate: 1
+  - prefab: {fileID: 5393524967499720681, guid: 1e8da7cf0a759e64b9302742598acc3c,
+      type: 3}
+    bothSides: 1
+    shouldRotate: 0
   minTime: 5
   maxTime: 10
   minDistance: 50
   maxDistance: 80
+  minRotation: 0
+  maxRotation: 360
 --- !u!4 &2828315963323494288
 Transform:
   m_ObjectHideFlags: 0
