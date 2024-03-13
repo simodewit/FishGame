@@ -185,8 +185,8 @@ MonoBehaviour:
   slowHitsTime: 5
   minAttackTime: 10
   maxAttackTime: 15
-  minRunTime: 60
-  maxRunTime: 100
+  minRunTime: 500
+  maxRunTime: 600
   minWaitTime: 5
   maxWaitTime: 15
   attackAvoidTime: 5
