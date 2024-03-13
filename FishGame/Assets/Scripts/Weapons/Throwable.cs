@@ -198,7 +198,7 @@ public class Throwable : MonoBehaviour
             transform.SetParent(collision.transform);
 
             col.enabled = false;
-            rb.velocity = Vector3.zero;
+            //rb.velocity = Vector3.zero;
             rb.isKinematic = true;
         }
 

@@ -164,32 +164,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 805e1d38fa6927845a07f8646b29cf02, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  boatTag: Boat
+  agent: {fileID: 2271361040179290097}
   hp: 300
   pointDistance: 0.3
-  boatTag: Boat
-  attackPlaces: []
-  agent: {fileID: 2271361040179290097}
-  attacks:
-  - {fileID: 11400000, guid: d70d0974153dcb64ba2922330787bd64, type: 2}
-  runaway:
-  - {fileID: 11400000, guid: f6e56e1d07d28fd48bcc39cb566ae89c, type: 2}
-  attackCombos: []
   swimming: {fileID: 0}
   normalSpeed: 3
   speedModifier: 2
-  MinSlowHits: 3
+  attackPlaces: []
+  attacks:
+  - {fileID: 11400000, guid: d70d0974153dcb64ba2922330787bd64, type: 2}
+  - {fileID: 11400000, guid: 9fd9801d1c520de44a3b7db2bdfcbf3c, type: 2}
+  - {fileID: 11400000, guid: 927264d2cf459bb4f9ca1dbf092c7c1e, type: 2}
+  - {fileID: 11400000, guid: 8dcba4103ea1b184f91c161bfe7dc182, type: 2}
+  - {fileID: 11400000, guid: 8d50172c8bdf8c0488c8f06227cf9384, type: 2}
+  escapeAttacks:
+  - {fileID: 11400000, guid: f6e56e1d07d28fd48bcc39cb566ae89c, type: 2}
+  attackCombos: []
+  MinSlowHits: 0
   slowHitsTime: 5
-  escapePlace: {fileID: 0}
-  minAttackTime: 60
-  maxAttackTime: 120
-  minRunTime: 30
-  maxRunTime: 60
+  minAttackTime: 10
+  maxAttackTime: 15
+  minRunTime: 60
+  maxRunTime: 100
   minWaitTime: 5
   maxWaitTime: 15
+  attackAvoidTime: 5
   speed: 0
   slowHits: 0
   table: {fileID: 0}
-  state: 0
+  escapePlace: {fileID: 0}
+  isHit: 0
+  colliderScript: {fileID: 0}
 --- !u!1 &725027255568046677
 GameObject:
   m_ObjectHideFlags: 0

@@ -7,7 +7,9 @@ public enum bossState
 {
     moving,
     notMoving,
-    attacking,
+    attackingHor,
+    attackingVer,
+    attackingDia,
     tryEscaping,
     escaping
 }
@@ -17,35 +19,37 @@ public class Boss : MonoBehaviour
     //main functions
     #region variables
 
+    [Header("Refrences")]
+    [Tooltip("The tag that the boat is using")]
+    public string boatTag = "Boat";
+    [Tooltip("The navmesh agent of the boss")]
+    public NavMeshAgent agent;
+
     [Header("General info")]
     [Tooltip("The total hp of the boss")][Range(0,5000)]
     public int hp = 500;
     [Tooltip("The max distance it can have to a point to decide if it is close enough to stop moving")]
     public float pointDistance;
-    [Tooltip("The tag that the boat is using")]
-    public string boatTag = "Boat";
-    [Tooltip("The places where the boss can attack")]
-    public Transform[] attackPlaces;
-    [Tooltip("The navmesh agent of the boss")]
-    public NavMeshAgent agent;
-    [Tooltip("All the attacks the boss can do")]
-    public Attack[] attacks;
-    [Tooltip("All the run aways the boss can do")]
-    public Attack[] runaway;
-    [Tooltip("All the attack combo's the boss can do")]
-    public AttackCombo[] attackCombos;
     [Tooltip("The normal swimming animation")]
     public Animation swimming;
     [Tooltip("The standard speed of the boss")]
     public float normalSpeed;
     [Tooltip("The speed multiplier of the boss")]
     public float speedModifier;
+
+    [Header("Attack data")]
+    [Tooltip("The places where the boss can attack")]
+    public Transform[] attackPlaces;
+    [Tooltip("All the attacks the boss can do")]
+    public Attack[] attacks;
+    [Tooltip("All the run aways the boss can do")]
+    public Attack[] escapeAttacks;
+    [Tooltip("All the attack combo's the boss can do")]
+    public AttackCombo[] attackCombos;
     [Tooltip("Has to hit this many slow objects to keep boss here")]
     public int MinSlowHits;
     [Tooltip("The time that the boss waits before deciding to leave or stay")]
     public float slowHitsTime;
-    [Tooltip("the place to go when escaping")]
-    public Transform escapePlace;
 
     [Header("Wait times")]
     [Tooltip("The minimum amount of seconds to start another attack combo")]
@@ -60,6 +64,8 @@ public class Boss : MonoBehaviour
     public float minWaitTime = 5;
     [Tooltip("The maximum amount of seconds to wait before moving")]
     public float maxWaitTime = 15;
+    [Tooltip("The seconds you have to wait before a attack damages you")]
+    public float attackAvoidTime;
 
     [Header("Code refrences dont change")]
     [Tooltip("The speed of the boss")]
@@ -68,15 +74,31 @@ public class Boss : MonoBehaviour
     public int slowHits;
     [Tooltip("The table script")]
     public Table table;
+    [Tooltip("the place to go when escaping")]
+    public Transform escapePlace;
+    [Tooltip("Decides if the player is damaged in the attack")]
+    public bool isHit;
+    [Tooltip("The boat collider script")]
+    public LookAt colliderScript;
 
     //privates
+    private GameObject horCollider;
+    private GameObject leftVerCollider;
+    private GameObject rightVerCollider;
+    private GameObject leftDiaCollider;
+    private GameObject rightDiaCollider;
+
     private float attackTimer;
+    private float attackAvoidTimer;
     private float runTimer;
     private float pointTimer;
     private float escapeTimer;
 
-    [SerializeField]private bossState state;
+    private int currentLocation;
 
+    private bossState state;
+
+    private Attack currentAttack;
     private Transform nextPlaceToBe;
     private Queue<Attack> attackQueue = new Queue<Attack>();
 
@@ -86,14 +108,30 @@ public class Boss : MonoBehaviour
 
     public void Start()
     {
-        attackTimer = Random.Range(minAttackTime, maxAttackTime);
-        runTimer = Random.Range(minRunTime, maxRunTime);
-        pointTimer = Random.Range(minWaitTime, maxWaitTime);
-        escapeTimer = slowHitsTime;
+        Timers();
+        GetColliders();
 
         int index = Random.Range(0, attackPlaces.Length);
         nextPlaceToBe = attackPlaces[index];
         speed = speedModifier;
+    }
+
+    public void Timers()
+    {
+        attackTimer = Random.Range(minAttackTime, maxAttackTime);
+        runTimer = Random.Range(minRunTime, maxRunTime);
+        pointTimer = Random.Range(minWaitTime, maxWaitTime);
+        attackAvoidTimer = attackAvoidTime;
+        escapeTimer = slowHitsTime;
+    }
+
+    public void GetColliders()
+    {
+        horCollider = colliderScript.colliderHor;
+        leftDiaCollider = colliderScript.colliderDiaLeft;
+        rightDiaCollider = colliderScript.colliderDiaRight;
+        leftVerCollider = colliderScript.colliderVerLeft;
+        rightVerCollider = colliderScript.colliderVerRight;
     }
 
     public void Update()
@@ -103,6 +141,7 @@ public class Boss : MonoBehaviour
         Moving();
         SpeedModifier();
         Escaping();
+        Attack();
     }
 
     #endregion
@@ -154,8 +193,8 @@ public class Boss : MonoBehaviour
         {
             runTimer = Random.Range(minRunTime, maxRunTime);
 
-            int index = Random.Range(0, runaway.Length);
-            attackQueue.Enqueue(runaway[index]);
+            int index = Random.Range(0, escapeAttacks.Length);
+            attackQueue.Enqueue(escapeAttacks[index]);
         }
 
         attackTimer -= Time.deltaTime;
@@ -171,52 +210,91 @@ public class Boss : MonoBehaviour
 
     #endregion
 
-    #region move
+    #region queue
 
-    public void Moving()
+    public void Queue()
     {
-        transform.position = agent.transform.position;
-
-        if (state == bossState.attacking || state == bossState.tryEscaping || state == bossState.escaping)
+        if (state != bossState.notMoving)
         {
-            if (!agent.isStopped)
-            {
-                ResetNavmesh();
-            }
-
             return;
         }
 
-        float distance = Vector3.Distance(transform.position, nextPlaceToBe.position);
-
-        if (distance <= pointDistance)
+        if (attackQueue.Count > 0)
         {
-            state = bossState.notMoving;
+            currentAttack = attackQueue.Dequeue();
 
-            if (!agent.isStopped)
+            if (currentAttack.attackSort == attackSort.escape)
             {
-                ResetNavmesh();
+                state = bossState.tryEscaping;
             }
-
-            pointTimer -= Time.deltaTime;
-
-            if (pointTimer <= 0)
+            else if (currentAttack.attackSort == attackSort.horizontal)
             {
-                int index = Random.Range(0, attackPlaces.Length);
-                nextPlaceToBe = attackPlaces[index];
-
-                agent.destination = nextPlaceToBe.position;
-                pointTimer = Random.Range(minWaitTime, maxWaitTime);
+                state = bossState.attackingHor;
+            }
+            else if (currentAttack.attackSort == attackSort.vertical)
+            {
+                state = bossState.attackingVer;
+            }
+            else if (currentAttack.attackSort == attackSort.diagonal)
+            {
+                state = bossState.attackingDia;
             }
         }
-        else
-        {
-            agent.destination = nextPlaceToBe.position;
+    }
 
-            if (state != bossState.moving)
+    #endregion
+
+    #region attack
+
+    public void Attack()
+    {
+        if (state == bossState.attackingHor)
+        {
+            CanDamage(horCollider);
+        }
+        else if (state == bossState.attackingVer)
+        {
+            if (currentAttack.side == attackPlace.left)
             {
-                state = bossState.moving;
+                CanDamage(leftVerCollider);
             }
+            if(currentAttack.side == attackPlace.right)
+            {
+                CanDamage(rightVerCollider);
+            }
+        }
+        else if (state == bossState.attackingDia)
+        {
+            if (currentAttack.side == attackPlace.left)
+            {
+                CanDamage(leftDiaCollider);
+            }
+            if (currentAttack.side == attackPlace.right)
+            {
+                CanDamage(rightDiaCollider);
+            }
+        }
+    }
+
+    #endregion
+
+    #region attack damage
+
+    public void CanDamage(GameObject colliderToTurnOn)
+    {
+        colliderToTurnOn.SetActive(true);
+        attackAvoidTimer -= Time.deltaTime;
+
+        if (attackAvoidTimer <= 0)
+        {
+            if (isHit)
+            {
+                table.state = stateOfUI.inUi;
+            }
+
+            colliderToTurnOn.SetActive(false);
+            attackAvoidTimer = attackAvoidTime;
+            state = bossState.notMoving;
         }
     }
 
@@ -265,33 +343,62 @@ public class Boss : MonoBehaviour
 
     #endregion
 
-    #region queue
+    #region move
 
-    public void Queue()
+    public void Moving()
     {
-        if (state != bossState.notMoving)
+        transform.position = agent.transform.position;
+
+        if (state != bossState.notMoving && state != bossState.moving)
         {
+            if (!agent.isStopped)
+            {
+                ResetNavmesh();
+            }
+
             return;
         }
 
-        if (attackQueue.Count > 0)
+        float distance = Vector3.Distance(transform.position, nextPlaceToBe.position);
+
+        if (distance <= pointDistance)
         {
-            Attack a = attackQueue.Dequeue();
-
-            if (a.escapeAttack)
+            if (state == bossState.moving)
             {
-                state = bossState.tryEscaping;
-            }
-            else
-            {
-                state = bossState.attacking;
+                state = bossState.notMoving;
             }
 
-            //turn on animation;
+            if (!agent.isStopped)
+            {
+                ResetNavmesh();
+            }
+
+            pointTimer -= Time.deltaTime;
+
+            if (pointTimer <= 0)
+            {
+                int index = Random.Range(0, attackPlaces.Length);
+
+                if (index == currentLocation)
+                {
+                    return;
+                }
+
+                nextPlaceToBe = attackPlaces[index];
+                currentLocation = index;
+
+                agent.destination = nextPlaceToBe.position;
+                pointTimer = Random.Range(minWaitTime, maxWaitTime);
+            }
         }
         else
         {
-            state = bossState.notMoving;
+            agent.destination = nextPlaceToBe.position;
+
+            if (state != bossState.moving)
+            {
+                state = bossState.moving;
+            }
         }
     }
 

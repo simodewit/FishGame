@@ -66,7 +66,6 @@ public class EnvGenerator : MonoBehaviour
 
         if (!prefabs[prefabNr].shouldRotate)
         {
-            print("resets rotation");
             rotation = Quaternion.identity;
         }
 

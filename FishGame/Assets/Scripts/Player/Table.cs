@@ -23,6 +23,8 @@ public class Table : MonoBehaviour
     public stateOfUI state = stateOfUI.inUi;
     [Tooltip("The script that instantiates the player")]
     public PlayerSpawner spawner;
+    [Tooltip("The damage model gameObject")]
+    public GameObject damageModel;
     [Tooltip("Give the data for each state what should be turned on or off")]
     public InfoUI[] info;
 
@@ -100,6 +102,12 @@ public class Table : MonoBehaviour
             {
                 GameObject boss = Instantiate(i.bossPrefab, i.spawnPlaceBoss.position, i.spawnPlaceBoss.rotation);
                 Boss b = boss.GetComponentInChildren<Boss>();
+
+                LookAt a = damageModel.GetComponent<LookAt>();
+
+                a.placeToLook = boss.transform;
+                b.colliderScript = a;
+                a.boss = b;
 
                 b.attackPlaces = i.bossAttackPlaces;
                 b.escapePlace = i.spawnPlaceBoss;
