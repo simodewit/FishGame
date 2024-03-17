@@ -6,6 +6,8 @@ public class LookAt : MonoBehaviour
 {
     [Tooltip("The place that it has to look towards")]
     public Transform placeToLook;
+    [Tooltip("The speed at wich the system turns towards the boss")]
+    public float rotateSpeed;
 
     [Header("All the colliders")]
     public GameObject colliderHor;
@@ -23,6 +25,11 @@ public class LookAt : MonoBehaviour
 
     public void LookTowards()
     {
-        transform.LookAt(placeToLook);
+        if (placeToLook == null)
+        {
+            return;
+        }
+
+        transform.localRotation = Quaternion.LookRotation(placeToLook.position);
     }
 }

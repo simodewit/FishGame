@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 8585849238558118221}
   - component: {fileID: 2747075372238627210}
   - component: {fileID: 452841840255451843}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Lightning
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -4842,7 +4842,7 @@ GameObject:
   - component: {fileID: 419450948777410742}
   - component: {fileID: 6579653912373631164}
   - component: {fileID: 4102077326998833020}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: LightningExplode
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9732,7 +9732,7 @@ GameObject:
   - component: {fileID: 1630264728643851496}
   - component: {fileID: 3565490173116063778}
   - component: {fileID: 3344727714542291625}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Urn tesla
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9838,7 +9838,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1453216718299504328}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: HoldPlace
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9872,7 +9872,7 @@ GameObject:
   - component: {fileID: 7217459027265421632}
   - component: {fileID: 4246838118813665899}
   - component: {fileID: 7007148361942802852}
-  m_Layer: 0
+  m_Layer: 3
   m_Name: Tesla
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -9918,7 +9918,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 1
+  m_UseGravity: 0
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0

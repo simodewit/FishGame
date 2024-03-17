@@ -4939,6 +4939,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   placeToLook: {fileID: 0}
+  rotateSpeed: 1
   colliderHor: {fileID: 4669216434485462987}
   colliderVerRight: {fileID: 3285164633122040094}
   colliderVerLeft: {fileID: 5286662011435183878}
@@ -8497,7 +8498,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   spawnPlace: {fileID: 2662314557305658458}
-  item: {fileID: 8056585826770451569, guid: 4746a692beef1484d83cda3709dd3e83, type: 3}
+  item: {fileID: 7172071461773805218, guid: 40de1bb7e27a96b49b430f420cddc95b, type: 3}
   spawnDistance: 0.5
   respawnTime: 2
 --- !u!4 &6874653802442595871 stripped

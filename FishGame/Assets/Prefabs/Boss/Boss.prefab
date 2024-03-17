@@ -183,12 +183,12 @@ MonoBehaviour:
   attackCombos: []
   MinSlowHits: 0
   slowHitsTime: 5
-  minAttackTime: 10
-  maxAttackTime: 15
-  minRunTime: 500
-  maxRunTime: 600
+  minAttackTime: 15
+  maxAttackTime: 25
+  minRunTime: 200
+  maxRunTime: 300
   minWaitTime: 5
-  maxWaitTime: 15
+  maxWaitTime: 10
   attackAvoidTime: 5
   speed: 0
   slowHits: 0
