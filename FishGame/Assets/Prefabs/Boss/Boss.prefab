@@ -194,7 +194,6 @@ MonoBehaviour:
   slowHits: 0
   table: {fileID: 0}
   escapePlace: {fileID: 0}
-  isHit: 0
   colliderScript: {fileID: 0}
 --- !u!1 &725027255568046677
 GameObject:

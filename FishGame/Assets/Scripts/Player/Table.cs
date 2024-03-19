@@ -25,6 +25,8 @@ public class Table : MonoBehaviour
     public PlayerSpawner spawner;
     [Tooltip("The damage model gameObject")]
     public GameObject damageModel;
+    [Tooltip("The Environment generator script")]
+    public EnvGenerator generator;
     [Tooltip("Give the data for each state what should be turned on or off")]
     public InfoUI[] info;
 
@@ -64,6 +66,7 @@ public class Table : MonoBehaviour
         }
 
         lastState = state;
+        generator.CheckSpawning();
 
         foreach (var i in info)
         {

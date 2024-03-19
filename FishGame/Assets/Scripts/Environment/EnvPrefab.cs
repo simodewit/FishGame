@@ -8,6 +8,8 @@ public class EnvPrefab : MonoBehaviour
     public float speed = 5;
     [Tooltip("The total distance before the prefab is deleted")][Range(1,1000)]
     public float maxDistance = 300;
+    [Tooltip("The island prefab that should be rotated")]
+    public Transform islandTransform;
 
     private Vector3 startPos;
 
