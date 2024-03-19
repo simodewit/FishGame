@@ -13,21 +13,21 @@ public class TableInteractable : MonoBehaviour
     [Tooltip("The material if the object is selected")]
     public Material selectedMaterial;
 
-    private Renderer renderer;
+    private Renderer ren;
 
     public void Start()
     {
-        renderer = GetComponent<Renderer>();
+        ren = GetComponent<Renderer>();
     }
 
     public void IfHoveredEntered()
     {
-        renderer.material = selectedMaterial;
+        ren.material = selectedMaterial;
     }
 
     public void IfHoveredExit()
     {
-        renderer.material = baseMaterial;
+        ren.material = baseMaterial;
     }
 
     public void TriggerInteractable()

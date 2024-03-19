@@ -76,10 +76,8 @@ public class Boss : MonoBehaviour
     public Table table;
     [Tooltip("the place to go when escaping")]
     public Transform escapePlace;
-    [Tooltip("Decides if the player is damaged in the attack")]
-    public bool isHit;
     [Tooltip("The boat collider script")]
-    public LookAt colliderScript;
+    public ColliderSystem colliderScript;
 
     //privates
     private GameObject horCollider;
@@ -95,6 +93,7 @@ public class Boss : MonoBehaviour
     private float escapeTimer;
 
     private int currentLocation;
+    private bool isHit;
 
     private bossState state;
 
@@ -157,7 +156,6 @@ public class Boss : MonoBehaviour
         {
             table.state = stateOfUI.inUi;
             Destroy(gameObject);
-            //game won
         }
     }
 
@@ -178,6 +176,20 @@ public class Boss : MonoBehaviour
     public void SpeedModifier()
     {
         agent.speed = normalSpeed * speedModifier;
+    }
+
+    #endregion
+
+    #region collision check of damage system
+
+    public void HasCollided()
+    {
+        isHit = true;
+    }
+
+    public void StoppedColliding()
+    {
+        isHit = false;
     }
 
     #endregion
@@ -290,6 +302,7 @@ public class Boss : MonoBehaviour
             if (isHit)
             {
                 table.state = stateOfUI.inUi;
+                Destroy(gameObject);
             }
 
             colliderToTurnOn.SetActive(false);

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DamageCollider : MonoBehaviour
 {
-    public LookAt colliderScript;
+    public ColliderSystem colliderScript;
     public Boss boss;
 
     public void Update()
@@ -20,13 +20,13 @@ public class DamageCollider : MonoBehaviour
         }
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        boss.isHit = true;
+        boss.HasCollided();
     }
 
     private void OnTriggerExit(Collider other)
     {
-        boss.isHit = false;
+        boss.StoppedColliding();
     }
 }

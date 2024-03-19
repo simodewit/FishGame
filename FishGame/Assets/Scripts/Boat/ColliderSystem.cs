@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class LookAt : MonoBehaviour
+public class ColliderSystem : MonoBehaviour
 {
     [Tooltip("The place that it has to look towards")]
     public Transform placeToLook;
@@ -30,6 +30,6 @@ public class LookAt : MonoBehaviour
             return;
         }
 
-        transform.localRotation = Quaternion.LookRotation(placeToLook.position);
+        transform.LookAt(placeToLook);
     }
 }

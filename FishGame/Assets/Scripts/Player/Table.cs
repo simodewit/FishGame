@@ -103,9 +103,9 @@ public class Table : MonoBehaviour
                 GameObject boss = Instantiate(i.bossPrefab, i.spawnPlaceBoss.position, i.spawnPlaceBoss.rotation);
                 Boss b = boss.GetComponentInChildren<Boss>();
 
-                LookAt a = damageModel.GetComponent<LookAt>();
+                ColliderSystem a = damageModel.GetComponent<ColliderSystem>();
 
-                a.placeToLook = boss.transform;
+                a.placeToLook = b.transform;
                 b.colliderScript = a;
                 a.boss = b;
 
