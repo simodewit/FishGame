@@ -110,7 +110,7 @@ public class EnvGenerator : MonoBehaviour
     {
         GameObject a = Instantiate(island, position, Quaternion.identity);
 
-        if (a.transform.GetComponent<EnvPrefab>() != null)
+        if (a.transform.GetComponent<EnvPrefab>().islandTransform != null)
         {
             a.transform.GetComponent<EnvPrefab>().islandTransform.Rotate(rotation);
         }

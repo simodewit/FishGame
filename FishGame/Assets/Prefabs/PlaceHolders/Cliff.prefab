@@ -131,6 +131,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   maxDistance: 300
+  islandTransform: {fileID: 1109103015557908087}
 --- !u!1 &8847775621810980755
 GameObject:
   m_ObjectHideFlags: 0

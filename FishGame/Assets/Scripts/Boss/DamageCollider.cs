@@ -22,11 +22,21 @@ public class DamageCollider : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
+        if (boss == null)
+        {
+            return;
+        }
+
         boss.HasCollided();
     }
 
     private void OnTriggerExit(Collider other)
     {
+        if (boss == null)
+        {
+            return;
+        }
+
         boss.StoppedColliding();
     }
 }
