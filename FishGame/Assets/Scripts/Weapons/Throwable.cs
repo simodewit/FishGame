@@ -3,6 +3,14 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.XR.Interaction.Toolkit;
 
+public enum ThrowableState
+{
+    spawned,
+    isHeld,
+    isThrown,
+    hasHit
+}
+
 public class Throwable : MonoBehaviour
 {
     #region variables
@@ -54,9 +62,7 @@ public class Throwable : MonoBehaviour
     public float stickTime;
 
     //private variables
-    private bool activateTimer;
-    private bool flies;
-    private bool hasHit;
+    private ThrowableState state;
     private float colliderTimer;
     private float stickTimer;
     private Boss boss;
@@ -85,13 +91,13 @@ public class Throwable : MonoBehaviour
 
     public void PickupThrowable()
     {
+        state = ThrowableState.isHeld;
         col.enabled = false;
     }
 
     public void DropThrowable()
     {
-        flies = true;
-        activateTimer = true;
+        state = ThrowableState.isThrown;
         rb.useGravity = true;
     }
 
@@ -101,13 +107,14 @@ public class Throwable : MonoBehaviour
 
     public void Timer()
     {
-        if (activateTimer)
+        if (state == ThrowableState.isThrown)
         {
-            colliderTimer -= Time.deltaTime;
-
-            if (colliderTimer <= 0)
+            if (colliderTimer > 0)
             {
-                activateTimer = false;
+                colliderTimer -= Time.deltaTime;
+            }
+            else if(!col.enabled)
+            {
                 col.enabled = true;
             }
         }
@@ -119,7 +126,7 @@ public class Throwable : MonoBehaviour
 
     public void FaceDirection()
     {
-        if (hasFront && flies)
+        if (hasFront && state == ThrowableState.isThrown)
         {
             Vector3 lookTowards = transform.position + rb.velocity;
             transform.LookAt(lookTowards);
@@ -146,7 +153,7 @@ public class Throwable : MonoBehaviour
 
     public void Collided()
     {
-        if (!hasHit)
+        if (state != ThrowableState.hasHit)
         {
             return;
         }
@@ -190,30 +197,30 @@ public class Throwable : MonoBehaviour
             return;
         }
 
-        flies = false;
-        hasHit = true;
+        state = ThrowableState.hasHit;
 
         if (sticks)
         {
             transform.SetParent(collision.transform);
 
             col.enabled = false;
-            //rb.velocity = Vector3.zero;
             rb.isKinematic = true;
         }
 
-        boss = collision.transform.GetComponent<Boss>();
+        BossCollider bossCollider = collision.transform.GetComponent<BossCollider>();
 
-        if (boss != null)
+        if (bossCollider != null)
         {
+            boss = bossCollider.boss;
+
             if (canDamageBoss)
             {
-                boss.Health(damage);
+                bossCollider.boss.Health(damage);
             }
 
             if (canSlowDown)
             {
-                boss.speedModifier = speedModifier;
+                bossCollider.boss.speedModifier = speedModifier;
             }
         }
 
@@ -225,17 +232,20 @@ public class Throwable : MonoBehaviour
 
             foreach (Collider col in cols)
             {
-                Weakspot spot = col.GetComponent<Weakspot>();
+                BossCollider spot = col.GetComponent<BossCollider>();
 
                 if (spot != null)
                 {
-                    spot.Health(damage, isExplosive);
+                    if (spot.isWeakspot)
+                    {
+                        spot.Health(damage, isExplosive);
+                    }
                 }
             }
         }
         else
         {
-            Weakspot spot = collision.transform.GetComponent<Weakspot>();
+            BossCollider spot = collision.transform.GetComponent<BossCollider>();
 
             if (spot != null)
             {

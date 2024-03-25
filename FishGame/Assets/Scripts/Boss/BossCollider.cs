@@ -4,12 +4,14 @@ using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 
-public class Weakspot : MonoBehaviour
+public class BossCollider : MonoBehaviour
 {
     #region variables
 
     [Tooltip("The gameObject of the boss")]
     public Boss boss;
+    [Tooltip("Decides if this is a weakspot or boss collider directly")]
+    public bool isWeakspot;
     [Tooltip("The extra amount of damage the boss gets if the weakspot is hit")]
     public float damageMultiplier;
     [Tooltip("The damage that the throwables have to do before revealing the weakspot")]

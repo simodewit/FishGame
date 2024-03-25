@@ -9939,7 +9939,7 @@ MonoBehaviour:
   rb: {fileID: 7217459027265421632}
   explosionParticle: {fileID: 6579653912373631164}
   damage: 20
-  colliderTime: 1
+  colliderTime: 0.5
   playerTag: Player
   canDamageBoss: 0
   canSlowDown: 1

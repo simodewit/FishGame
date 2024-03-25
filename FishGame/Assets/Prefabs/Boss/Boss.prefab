@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 1091800651432103300}
   - component: {fileID: 1698238819520477626}
   - component: {fileID: 1661001146046999154}
+  - component: {fileID: 8767611646906284102}
   m_Layer: 7
   m_Name: Boss model
   m_TagString: Untagged
@@ -195,6 +196,23 @@ MonoBehaviour:
   table: {fileID: 0}
   escapePlace: {fileID: 0}
   colliderScript: {fileID: 0}
+--- !u!114 &8767611646906284102
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 467999187826725764}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf6952e8dfb5fd84ebdcaf7e3f907faa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss: {fileID: 1661001146046999154}
+  isWeakspot: 0
+  damageMultiplier: 0
+  hp: 0
+  layers: []
 --- !u!1 &725027255568046677
 GameObject:
   m_ObjectHideFlags: 0
@@ -651,6 +669,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 1661001146046999154}
+  isWeakspot: 0
   damageMultiplier: 1.5
   hp: 60
   layers:
@@ -1231,6 +1250,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 1661001146046999154}
+  isWeakspot: 0
   damageMultiplier: 1.5
   hp: 60
   layers:
@@ -1313,6 +1333,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 1661001146046999154}
+  isWeakspot: 0
   damageMultiplier: 1.5
   hp: 60
   layers:
@@ -1644,6 +1665,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 1661001146046999154}
+  isWeakspot: 0
   damageMultiplier: 1.5
   hp: 60
   layers:
@@ -2224,6 +2246,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 1661001146046999154}
+  isWeakspot: 0
   damageMultiplier: 1.5
   hp: 60
   layers:
@@ -2472,6 +2495,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 1661001146046999154}
+  isWeakspot: 0
   damageMultiplier: 1.5
   hp: 60
   layers:
@@ -3633,6 +3657,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 1661001146046999154}
+  isWeakspot: 0
   damageMultiplier: 1.5
   hp: 60
   layers:
@@ -3798,6 +3823,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 1661001146046999154}
+  isWeakspot: 0
   damageMultiplier: 1.5
   hp: 60
   layers:
@@ -4046,6 +4072,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 1661001146046999154}
+  isWeakspot: 0
   damageMultiplier: 1.5
   hp: 60
   layers:
