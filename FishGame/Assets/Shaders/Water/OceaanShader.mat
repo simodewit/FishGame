@@ -102,9 +102,9 @@ Material:
     - _BumpScale: 1
     - _ClearCoatMask: 0
     - _ClearCoatSmoothness: 0
-    - _CrestFalloff: 2
-    - _CrestOffset: 2.24
-    - _CrestSize: 4.31
+    - _CrestFalloff: -0.01
+    - _CrestOffset: -51.86
+    - _CrestSize: -1.32
     - _Cull: 2
     - _Cutoff: 0.5
     - _DetailAlbedoMapScale: 1
@@ -112,7 +112,7 @@ Material:
     - _DstBlend: 0
     - _DstBlendAlpha: 0
     - _EnvironmentReflections: 1
-    - _Extra_expersion: 0.53
+    - _Extra_expersion: 1.65
     - _FoamBands: 1
     - _FoamFallOff: 5.5
     - _FoamRemoval: 0.21
