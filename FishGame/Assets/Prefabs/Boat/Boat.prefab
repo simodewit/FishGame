@@ -7736,7 +7736,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6c0e3fec3af8ad345acac7838d2d8252,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.947
+      value: -0.804
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6c0e3fec3af8ad345acac7838d2d8252,
         type: 3}
@@ -7925,7 +7925,7 @@ MonoBehaviour:
   spawnPlace: {fileID: 4591294503060420656}
   item: {fileID: 5035696622424051370, guid: 40eac25ef6bed1945a745f57989c83e0, type: 3}
   spawnDistance: 0.5
-  respawnTime: 2
+  respawnTime: 3
 --- !u!4 &3343381913843763293 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6c0e3fec3af8ad345acac7838d2d8252,
@@ -7943,7 +7943,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6c0e3fec3af8ad345acac7838d2d8252,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.71299994
+      value: 0.573
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6c0e3fec3af8ad345acac7838d2d8252,
         type: 3}
@@ -8116,7 +8116,7 @@ MonoBehaviour:
   spawnPlace: {fileID: 6826727802766309286}
   item: {fileID: 7599512682045011363, guid: 51d73616430a80049ada5d30f78ad1b3, type: 3}
   spawnDistance: 0.5
-  respawnTime: 2
+  respawnTime: 5
 --- !u!4 &2968409438873190893 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6c0e3fec3af8ad345acac7838d2d8252,
@@ -8327,7 +8327,7 @@ PrefabInstance:
     - target: {fileID: -8679921383154817045, guid: 6c0e3fec3af8ad345acac7838d2d8252,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0.694
+      value: -0.13
       objectReference: {fileID: 0}
     - target: {fileID: -8679921383154817045, guid: 6c0e3fec3af8ad345acac7838d2d8252,
         type: 3}
@@ -8500,7 +8500,7 @@ MonoBehaviour:
   spawnPlace: {fileID: 2662314557305658458}
   item: {fileID: 7172071461773805218, guid: 40de1bb7e27a96b49b430f420cddc95b, type: 3}
   spawnDistance: 0.5
-  respawnTime: 2
+  respawnTime: 10
 --- !u!4 &6874653802442595871 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: 6c0e3fec3af8ad345acac7838d2d8252,
@@ -8697,4 +8697,4 @@ MonoBehaviour:
   spawnPlace: {fileID: 7214767542487129076}
   item: {fileID: 5035696622424051370, guid: aaf9a570b60113447b794fcc13036caf, type: 3}
   spawnDistance: 0.5
-  respawnTime: 2
+  respawnTime: 0.5

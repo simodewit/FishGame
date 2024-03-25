@@ -9939,7 +9939,7 @@ MonoBehaviour:
   rb: {fileID: 7217459027265421632}
   explosionParticle: {fileID: 6579653912373631164}
   damage: 20
-  colliderTime: 1
+  colliderTime: 0.5
   playerTag: Player
   canDamageBoss: 0
   canSlowDown: 1
@@ -10125,7 +10125,7 @@ MonoBehaviour:
     m_RotationOrder: 4
   m_ThrowVelocityScale: 6
   m_ThrowAngularVelocityScale: 2
-  m_ForceGravityOnDetach: 0
+  m_ForceGravityOnDetach: 1
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
   m_StartingSingleGrabTransformers: []
