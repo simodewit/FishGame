@@ -21,7 +21,7 @@ public class EnvGenerator : MonoBehaviour
 
     //privates
     private float timer;
-    private bool canSpawn;
+    [SerializeField]private bool canSpawn;
 
     #endregion
 
