@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class ColliderSystem : MonoBehaviour
@@ -31,5 +32,11 @@ public class ColliderSystem : MonoBehaviour
         }
 
         transform.LookAt(placeToLook);
+
+        Vector3 eulerAngles = transform.rotation.eulerAngles;
+        eulerAngles.x = 0;
+        eulerAngles.z = 0;
+
+        transform.rotation = Quaternion.Euler(eulerAngles);
     }
 }

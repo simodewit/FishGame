@@ -28,8 +28,6 @@ public class Throwable : MonoBehaviour
     public int damage = 20;
     [Tooltip("The time that the collider of this throwable is dissabled after letting go of the object. you want this to be as low as possible without colliding with the player")][Range(0,3)]
     public float colliderTime = 1;
-    [Tooltip("The tag of the player")]
-    public string playerTag;
     [Tooltip("Decides if the object can directly damage the boss")]
     public bool canDamageBoss;
 
@@ -149,7 +147,7 @@ public class Throwable : MonoBehaviour
 
     #endregion
 
-    #region hit
+    #region stick
 
     public void Collided()
     {
@@ -199,14 +197,13 @@ public class Throwable : MonoBehaviour
 
         state = ThrowableState.hasHit;
 
-        if (sticks)
-        {
-            transform.SetParent(collision.transform);
+        BossDamage(collision);
+        Sticks(collision);
+        Explosion(collision);
+    }
 
-            col.enabled = false;
-            rb.isKinematic = true;
-        }
-
+    public void BossDamage(Collision collision)
+    {
         BossCollider bossCollider = collision.transform.GetComponent<BossCollider>();
 
         if (bossCollider != null)
@@ -223,7 +220,19 @@ public class Throwable : MonoBehaviour
                 bossCollider.boss.speedModifier = speedModifier;
             }
         }
+    }
+    public void Sticks(Collision collision)
+    {
+        if (sticks)
+        {
+            transform.SetParent(collision.transform);
 
+            col.enabled = false;
+            rb.isKinematic = true;
+        }
+    }
+    public void Explosion(Collision collision)
+    {
         if (isExplosive)
         {
             explosionParticle.Play();

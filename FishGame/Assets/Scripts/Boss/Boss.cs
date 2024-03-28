@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
 
-public enum bossState
+public enum BossState
 {
     moving,
     notMoving,
+    turning,
+    canAttack,
     attackingHor,
     attackingVer,
     attackingDia,
     tryEscaping,
-    escaping
+    escaping,
+    turningBack
 }
 
 public class Boss : MonoBehaviour
@@ -20,10 +23,10 @@ public class Boss : MonoBehaviour
     #region variables
 
     [Header("Refrences")]
-    [Tooltip("The tag that the boat is using")]
-    public string boatTag = "Boat";
     [Tooltip("The navmesh agent of the boss")]
     public NavMeshAgent agent;
+    [Tooltip("The empty that moves towards the player at all times")]
+    public Transform rotatingObject;
 
     [Header("General info")]
     [Tooltip("The total hp of the boss")][Range(0,5000)]
@@ -44,12 +47,14 @@ public class Boss : MonoBehaviour
     public Attack[] attacks;
     [Tooltip("All the run aways the boss can do")]
     public Attack[] escapeAttacks;
-    [Tooltip("All the attack combo's the boss can do")]
-    public AttackCombo[] attackCombos;
     [Tooltip("Has to hit this many slow objects to keep boss here")]
     public int MinSlowHits;
     [Tooltip("The time that the boss waits before deciding to leave or stay")]
     public float slowHitsTime;
+    [Tooltip("The speed at wich the boss rotates towards a position where it is able to attack")]
+    public float rotateSpeed;
+    [Tooltip("The total angle needed before snapping towards the end rotation")]
+    public float rotateSnapDistance;
 
     [Header("Wait times")]
     [Tooltip("The minimum amount of seconds to start another attack combo")]
@@ -95,7 +100,7 @@ public class Boss : MonoBehaviour
     private int currentLocation;
     private bool isHit;
 
-    private bossState state;
+    private BossState state;
 
     private Attack currentAttack;
     private Transform nextPlaceToBe;
@@ -137,10 +142,11 @@ public class Boss : MonoBehaviour
     {
         DecideNextMove();
         Queue();
-        Moving();
-        SpeedModifier();
-        Escaping();
+        Turning();
         Attack();
+        Escaping();
+        SpeedModifier();
+        Moving();
     }
 
     #endregion
@@ -194,6 +200,15 @@ public class Boss : MonoBehaviour
 
     #endregion
 
+    #region animations
+
+    public void Animations()
+    {
+        
+    }
+
+    #endregion
+
     //main functions
     #region attack decider
 
@@ -222,11 +237,51 @@ public class Boss : MonoBehaviour
 
     #endregion
 
+    #region turning
+
+    public void Turning()
+    {
+        if (state == BossState.notMoving && attackQueue.Count != 0)
+        {
+            state = BossState.turning;
+        }
+
+        if (state == BossState.turning)
+        {
+            Quaternion rotateTo = rotatingObject.transform.rotation;
+
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotateTo, rotateSpeed * Time.deltaTime);
+
+            if (Quaternion.Angle(transform.rotation, rotatingObject.transform.rotation) <= rotateSnapDistance)
+            {
+                transform.rotation = rotatingObject.transform.rotation;
+
+                state = BossState.canAttack;
+            }
+        }
+
+        if (state == BossState.turningBack)
+        {
+            Quaternion rotateTo = Quaternion.identity;
+
+            transform.rotation = Quaternion.RotateTowards(transform.rotation, rotateTo, rotateSpeed * Time.deltaTime);
+
+            if (Quaternion.Angle(transform.rotation, Quaternion.identity) <= rotateSnapDistance)
+            {
+                transform.rotation = Quaternion.identity;
+
+                state = BossState.notMoving;
+            }
+        }
+    }
+
+    #endregion
+
     #region queue
 
     public void Queue()
     {
-        if (state != bossState.notMoving)
+        if (state != BossState.canAttack)
         {
             return;
         }
@@ -237,19 +292,19 @@ public class Boss : MonoBehaviour
 
             if (currentAttack.attackSort == attackSort.escape)
             {
-                state = bossState.tryEscaping;
+                state = BossState.tryEscaping;
             }
             else if (currentAttack.attackSort == attackSort.horizontal)
             {
-                state = bossState.attackingHor;
+                state = BossState.attackingHor;
             }
             else if (currentAttack.attackSort == attackSort.vertical)
             {
-                state = bossState.attackingVer;
+                state = BossState.attackingVer;
             }
             else if (currentAttack.attackSort == attackSort.diagonal)
             {
-                state = bossState.attackingDia;
+                state = BossState.attackingDia;
             }
         }
     }
@@ -260,11 +315,11 @@ public class Boss : MonoBehaviour
 
     public void Attack()
     {
-        if (state == bossState.attackingHor)
+        if (state == BossState.attackingHor)
         {
             CanDamage(horCollider);
         }
-        else if (state == bossState.attackingVer)
+        else if (state == BossState.attackingVer)
         {
             if (currentAttack.side == attackPlace.left)
             {
@@ -275,7 +330,7 @@ public class Boss : MonoBehaviour
                 CanDamage(rightVerCollider);
             }
         }
-        else if (state == bossState.attackingDia)
+        else if (state == BossState.attackingDia)
         {
             if (currentAttack.side == attackPlace.left)
             {
@@ -307,7 +362,7 @@ public class Boss : MonoBehaviour
 
             colliderToTurnOn.SetActive(false);
             attackAvoidTimer = attackAvoidTime;
-            state = bossState.notMoving;
+            state = BossState.turningBack;
         }
     }
 
@@ -317,7 +372,7 @@ public class Boss : MonoBehaviour
 
     public void Escaping()
     {
-        if (state == bossState.tryEscaping)
+        if (state == BossState.tryEscaping)
         {
             escapeTimer -= Time.deltaTime;
 
@@ -327,11 +382,11 @@ public class Boss : MonoBehaviour
 
                 if (slowHits <= MinSlowHits)
                 {
-                    state = bossState.escaping;
+                    state = BossState.escaping;
                 }
                 else
                 {
-                    state = bossState.notMoving;
+                    state = BossState.notMoving;
                 }
             }
         }
@@ -340,7 +395,7 @@ public class Boss : MonoBehaviour
             slowHits = 0;
         }
 
-        if (state == bossState.escaping)
+        if (state == BossState.escaping)
         {
             agent.destination = escapePlace.position;
 
@@ -362,7 +417,7 @@ public class Boss : MonoBehaviour
     {
         transform.position = agent.transform.position;
 
-        if (state != bossState.notMoving && state != bossState.moving)
+        if (state != BossState.notMoving && state != BossState.moving)
         {
             if (!agent.isStopped)
             {
@@ -376,9 +431,9 @@ public class Boss : MonoBehaviour
 
         if (distance <= pointDistance)
         {
-            if (state == bossState.moving)
+            if (state == BossState.moving)
             {
-                state = bossState.notMoving;
+                state = BossState.notMoving;
             }
 
             if (!agent.isStopped)
@@ -408,9 +463,9 @@ public class Boss : MonoBehaviour
         {
             agent.destination = nextPlaceToBe.position;
 
-            if (state != bossState.moving)
+            if (state != BossState.moving)
             {
-                state = bossState.moving;
+                state = BossState.moving;
             }
         }
     }
