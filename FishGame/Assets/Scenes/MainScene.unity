@@ -4533,6 +4533,7 @@ MonoBehaviour:
     bothSides: 1
     minDistance: 60
     maxDistance: 100
+  canSpawn: 0
 --- !u!1 &1675815930188215322
 GameObject:
   m_ObjectHideFlags: 0
@@ -5552,7 +5553,7 @@ Transform:
   m_GameObject: {fileID: 2905693226619914572}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -11.370628, y: 2.3, z: 64.2}
+  m_LocalPosition: {x: -11.370628, y: 2, z: 64.2}
   m_LocalScale: {x: 100, y: 1, z: 100}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -5832,7 +5833,7 @@ Transform:
   m_GameObject: {fileID: 5314832247847198785}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0.5, z: 170}
+  m_LocalPosition: {x: 0, y: 2, z: 170}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
