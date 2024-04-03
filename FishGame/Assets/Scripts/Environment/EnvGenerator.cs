@@ -48,12 +48,12 @@ public class EnvGenerator : MonoBehaviour
         {
             if (state == table.state)
             {
-                canSpawn = false;
+                canSpawn = true;
                 return;
             }
         }
 
-        canSpawn = true;
+        canSpawn = false;
     }
 
     #endregion

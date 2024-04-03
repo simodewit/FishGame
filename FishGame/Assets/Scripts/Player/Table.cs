@@ -27,6 +27,8 @@ public class Table : MonoBehaviour
     public GameObject damageModel;
     [Tooltip("The Environment generator script")]
     public EnvGenerator generator;
+    [Tooltip("The total time for the fading")]
+    public float fadingTime;
     [Tooltip("Give the data for each state what should be turned on or off")]
     public InfoUI[] info;
 
@@ -35,6 +37,7 @@ public class Table : MonoBehaviour
     private ContinuousMoveProviderBase moveComponent;
     private ContinuousTurnProviderBase turnComponent;
     private GameObject player;
+    private ColliderSystem colliders;
 
     #endregion
 
@@ -47,6 +50,7 @@ public class Table : MonoBehaviour
         moveComponent = spawner.player.GetComponent<ContinuousMoveProviderBase>();
         turnComponent = spawner.player.GetComponent<ContinuousTurnProviderBase>();
         player = spawner.player;
+        colliders = damageModel.GetComponent<ColliderSystem>();
     }
 
     public void Update()
@@ -56,7 +60,24 @@ public class Table : MonoBehaviour
 
     #endregion
 
-    #region UI
+    #region support functions
+
+    public void TurnOffAndOn(InfoUI index)
+    {
+        foreach (GameObject currentGameObject in index.turnOn)
+        {
+            currentGameObject.SetActive(true);
+        }
+
+        foreach (GameObject currentGameObject in index.turnOff)
+        {
+            currentGameObject.SetActive(false);
+        }
+    }
+
+    #endregion
+
+    #region state change
 
     public void ChangeUIState()
     {
@@ -68,57 +89,95 @@ public class Table : MonoBehaviour
         lastState = state;
         generator.CheckSpawning();
 
-        foreach (var i in info)
+        foreach (var currentInfo in info)
         {
-            if (i.state != state)
+            if (currentInfo.state != state)
             {
                 continue;
             }
 
-            foreach (GameObject g in i.turnOn)
-            {
-                g.SetActive(true);
-            }
+            MainCode(currentInfo);
+        }
+    }
 
-            foreach (GameObject g in i.turnOff)
-            {
-                g.SetActive(false);
-            }
+    #endregion
 
-            if (i.shouldTeleport)
-            {
-                player.transform.position = i.placeToTeleport.position;
-            }
+    #region main code
 
-            if (!i.canMove)
+    public void MainCode(InfoUI index)
+    {
+        //turns gameobjects off or on
+        TurnOffAndOn(index);
+
+        //runs the code if the player should be teleported
+        if (index.shouldTeleport)
+        {
+            if (index.shouldFade)
             {
-                moveComponent.enabled = false;
-                turnComponent.enabled = false;
+                Fading(index);
             }
             else
             {
-                moveComponent.enabled = true;
-                turnComponent.enabled = true;
+                player.transform.position = index.placeToTeleport.position;
             }
+        }
 
-            if (i.bossPrefab != null && i.spawnPlaceBoss != null && i.spawnBoss)
-            {
-                GameObject boss = Instantiate(i.bossPrefab, i.spawnPlaceBoss.position, i.spawnPlaceBoss.rotation);
-                Boss b = boss.GetComponentInChildren<Boss>();
+        //changes if the player can move or not
+        if (!index.canMove)
+        {
+            moveComponent.enabled = false;
+            turnComponent.enabled = false;
+        }
+        else
+        {
+            moveComponent.enabled = true;
+            turnComponent.enabled = true;
+        }
 
-                ColliderSystem a = damageModel.GetComponent<ColliderSystem>();
-
-                a.placeToLook = b.transform;
-                b.colliderScript = a;
-                a.boss = b;
-
-                b.attackPlaces = i.bossAttackPlaces;
-                b.escapePlace = i.spawnPlaceBoss;
-                b.table = this;
-            }
-
+        //conditions for the boss spawn code
+        if (index.bossPrefab == null)
+        {
             return;
         }
+
+        if (index.spawnPlaceBoss == null)
+        {
+            return;
+        }
+
+        if (!index.spawnBoss)
+        {
+            return;
+        }
+
+        //spawns the boss
+        GameObject boss = Instantiate(index.bossPrefab, index.spawnPlaceBoss.position, index.spawnPlaceBoss.rotation);
+        Boss bossScript = boss.GetComponentInChildren<Boss>();
+
+        //gives the boss its refrences
+        bossScript.attackPlaces = index.bossAttackPlaces;
+        bossScript.escapePlace = index.spawnPlaceBoss;
+        bossScript.table = this;
+
+        //sets other refrences
+        colliders.placeToLook = bossScript.transform;
+        bossScript.colliderScript = colliders;
+        colliders.boss = bossScript;
+    }
+
+    #endregion
+     
+    #region fading
+
+    public IEnumerator Fading(InfoUI index)
+    {
+        float beginFading = fadingTime * .5f;
+        yield return new WaitForSeconds(beginFading);
+
+        player.transform.position = index.placeToTeleport.position;
+
+        float endFading = fadingTime * .5f;
+        yield return new WaitForSeconds(endFading);
     }
 
     #endregion
@@ -129,6 +188,8 @@ public class InfoUI
 {
     [Tooltip("The state this is about")]
     public stateOfUI state;
+    [Tooltip("Should fade in and out")]
+    public bool shouldFade;
     [Tooltip("The things that should be turned on in this state")]
     public GameObject[] turnOn;
     [Tooltip("The things that should be turned off in this state")]

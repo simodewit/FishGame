@@ -69,8 +69,6 @@ public class Boss : MonoBehaviour
     public float minWaitTime = 5;
     [Tooltip("The maximum amount of seconds to wait before moving")]
     public float maxWaitTime = 15;
-    [Tooltip("The seconds you have to wait before a attack damages you")]
-    public float attackAvoidTime;
 
     [Header("Code refrences dont change")]
     [Tooltip("The speed of the boss")]
@@ -99,6 +97,7 @@ public class Boss : MonoBehaviour
 
     private int currentLocation;
     private bool isHit;
+    private bool hasAddedTime;
 
     private BossState state;
 
@@ -125,7 +124,6 @@ public class Boss : MonoBehaviour
         attackTimer = Random.Range(minAttackTime, maxAttackTime);
         runTimer = Random.Range(minRunTime, maxRunTime);
         pointTimer = Random.Range(minWaitTime, maxWaitTime);
-        attackAvoidTimer = attackAvoidTime;
         escapeTimer = slowHitsTime;
     }
 
@@ -349,6 +347,12 @@ public class Boss : MonoBehaviour
 
     public void CanDamage(GameObject colliderToTurnOn)
     {
+        if (!hasAddedTime)
+        {
+            attackAvoidTimer = currentAttack.length;
+            hasAddedTime = true;
+        }
+
         colliderToTurnOn.SetActive(true);
         attackAvoidTimer -= Time.deltaTime;
 
@@ -361,8 +365,8 @@ public class Boss : MonoBehaviour
             }
 
             colliderToTurnOn.SetActive(false);
-            attackAvoidTimer = attackAvoidTime;
             state = BossState.turningBack;
+            hasAddedTime = false;
         }
     }
 

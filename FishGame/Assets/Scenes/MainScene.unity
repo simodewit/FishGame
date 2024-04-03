@@ -4517,7 +4517,7 @@ MonoBehaviour:
   minTime: 5
   maxTime: 10
   table: {fileID: 688842901}
-  dontSpawnStates: 00000000010000000200000003000000
+  spawnStates: 040000000500000006000000
   prefabs:
   - prefab: {fileID: 9222155237348354341, guid: 8bd04c3e2b0c2704fbd830fcc37ba42d,
       type: 3}
