@@ -29,6 +29,8 @@ public class Table : MonoBehaviour
     public EnvGenerator generator;
     [Tooltip("The total time for the fading")]
     public float fadingTime;
+    [Tooltip("The music manager script")]
+    public MusicManager musicManager;
     [Tooltip("Give the data for each state what should be turned on or off")]
     public InfoUI[] info;
 
@@ -163,6 +165,9 @@ public class Table : MonoBehaviour
         colliders.placeToLook = bossScript.transform;
         bossScript.colliderScript = colliders;
         colliders.boss = bossScript;
+
+        //changes music manager
+        musicManager.state = index.musicState;
     }
 
     #endregion
@@ -200,6 +205,8 @@ public class InfoUI
     public Transform placeToTeleport;
     [Tooltip("Decides if the player is able to when entering this state")]
     public bool canMove;
+    [Tooltip("The state at wich the music manager should be")]
+    public MusicState musicState;
     [Tooltip("Decides if a boss has to be placed when entering this state")]
     public bool spawnBoss;
     [Tooltip("The boss that it has to spawn")]

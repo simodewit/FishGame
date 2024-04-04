@@ -21,10 +21,27 @@ public class MusicManager : MonoBehaviour
 
     //privates
     private MusicState lastState;
+    private AudioSource currentSong;
+    private int inUIIndex;
+    private int inGameplayIndex;
 
     #endregion
 
-    #region update
+    #region start and update
+
+    public void Start()
+    {
+        if (state == MusicState.inUI)
+        {
+            inUI[inUIIndex].Play();
+            currentSong = inUI[inUIIndex];
+        }
+        else
+        {
+            inGameplay[inGameplayIndex].Play();
+            currentSong = inGameplay[inGameplayIndex];
+        }
+    }
 
     public void Update()
     {
@@ -72,12 +89,38 @@ public class MusicManager : MonoBehaviour
 
     public void InUI()
     {
+        if (currentSong.isPlaying)
+        {
+            return;
+        }
 
+        inUIIndex += 1;
+
+        if (inUIIndex >= inUI.Length)
+        {
+            inUIIndex = 0;
+        }
+
+        inUI[inUIIndex].Play();
+        currentSong = inUI[inUIIndex];
     }
 
     public void InGameplay()
     {
+        if (currentSong.isPlaying)
+        {
+            return;
+        }
 
+        inGameplayIndex += 1;
+
+        if (inGameplayIndex >= inGameplay.Length)
+        {
+            inGameplayIndex = 0;
+        }
+
+        inGameplay[inGameplayIndex].Play();
+        currentSong = inGameplay[inGameplayIndex];
     }
 
     #endregion
