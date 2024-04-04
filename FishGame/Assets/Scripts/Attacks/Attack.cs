@@ -20,8 +20,8 @@ public enum attackPlace
 [CreateAssetMenu(fileName = "Attack", menuName = "ScriptableObjects/Attack", order = 1)]
 public class Attack : ScriptableObject
 {
-    [Tooltip("The animation of this attack")]
-    public Animation animation;
+    [Tooltip("The index of the attack in the animator")]
+    public int triggerIndex;
     [Tooltip("Decides what kind of attack this is")]
     public attackSort attackSort;
     [Tooltip("Decides if the attack is left or right sided or both. only works with vertical and diagonal attacks")]

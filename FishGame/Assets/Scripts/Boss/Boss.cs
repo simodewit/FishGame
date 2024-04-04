@@ -27,6 +27,8 @@ public class Boss : MonoBehaviour
     public NavMeshAgent agent;
     [Tooltip("The empty that moves towards the player at all times")]
     public Transform rotatingObject;
+    [Tooltip("The animator of the boss")]
+    public Animator animator;
 
     [Header("General info")]
     [Tooltip("The total hp of the boss")][Range(0,5000)]
