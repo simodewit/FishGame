@@ -35,8 +35,6 @@ public class Boss : MonoBehaviour
     public int hp = 500;
     [Tooltip("The max distance it can have to a point to decide if it is close enough to stop moving")]
     public float pointDistance;
-    [Tooltip("The normal swimming animation")]
-    public Animation swimming;
     [Tooltip("The standard speed of the boss")]
     public float normalSpeed;
     [Tooltip("The speed multiplier of the boss")]

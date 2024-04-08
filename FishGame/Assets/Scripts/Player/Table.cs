@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using UnityEngine.XR.Interaction.Toolkit;
 
 public enum stateOfUI
@@ -29,8 +30,16 @@ public class Table : MonoBehaviour
     public EnvGenerator generator;
     [Tooltip("The total time for the fading")]
     public float fadingTime;
+    [Tooltip("The total time for the fading")]
+    public float teleportTime;
     [Tooltip("The music manager script")]
     public MusicManager musicManager;
+    [Tooltip("The color when fading")]
+    public Color fadeColor;
+    [Tooltip("The color when out of fading")]
+    public Color normalColor;
+    [Tooltip("The image for the fading")]
+    public Image fadingImage;
     [Tooltip("Give the data for each state what should be turned on or off")]
     public InfoUI[] info;
 
@@ -40,6 +49,7 @@ public class Table : MonoBehaviour
     private ContinuousTurnProviderBase turnComponent;
     private GameObject player;
     private ColliderSystem colliders;
+    private bool shouldFade;
 
     #endregion
 
@@ -58,6 +68,7 @@ public class Table : MonoBehaviour
     public void Update()
     {
         ChangeUIState();
+        LerpFading();
     }
 
     #endregion
@@ -116,7 +127,7 @@ public class Table : MonoBehaviour
         {
             if (index.shouldFade)
             {
-                Fading(index);
+                StartCoroutine(Fading(index));
             }
             else
             {
@@ -176,13 +187,25 @@ public class Table : MonoBehaviour
 
     public IEnumerator Fading(InfoUI index)
     {
-        float beginFading = fadingTime * .5f;
-        yield return new WaitForSeconds(beginFading);
+        float beginFading = teleportTime * .5f;
+        shouldFade = true;
 
+        yield return new WaitForSeconds(beginFading);
         player.transform.position = index.placeToTeleport.position;
 
-        float endFading = fadingTime * .5f;
-        yield return new WaitForSeconds(endFading);
+        shouldFade = false;
+    }
+
+    public void LerpFading()
+    {
+        if (shouldFade)
+        {
+            fadingImage.color = Color.Lerp(fadingImage.color, fadeColor, fadingTime * Time.deltaTime);
+        }
+        else
+        {
+            fadingImage.color = Color.Lerp(fadingImage.color, normalColor, fadingTime * Time.deltaTime);
+        }
     }
 
     #endregion
