@@ -36,6 +36,8 @@ public class Throwable : MonoBehaviour
     public bool canSlowDown;
     [Tooltip("The slowed speed multiplier")]
     public float speedModifier;
+    [Tooltip("The time that the speed should be modified")]
+    public float speedTime;
 
     [Header("Explosive data")]
     [Tooltip("decides if this object is explosive")]
@@ -160,7 +162,6 @@ public class Throwable : MonoBehaviour
         {
             if (canSlowDown && boss != null)
             {
-                boss.speedModifier = boss.speed;
                 boss.slowHits += 1;
             }
 
@@ -175,7 +176,6 @@ public class Throwable : MonoBehaviour
             {
                 if (canSlowDown && boss != null)
                 {
-                    boss.speedModifier = boss.speed;
                     boss.slowHits += 1;
                 }
 
@@ -217,7 +217,7 @@ public class Throwable : MonoBehaviour
 
             if (canSlowDown)
             {
-                bossCollider.boss.speedModifier = speedModifier;
+                bossCollider.boss.ChangeSpeed(speedModifier, speedTime);
             }
         }
     }

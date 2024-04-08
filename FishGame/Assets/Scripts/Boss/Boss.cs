@@ -73,8 +73,6 @@ public class Boss : MonoBehaviour
     public float maxWaitTime = 15;
 
     [Header("Code refrences dont change")]
-    [Tooltip("The speed of the boss")]
-    public float speed;
     [Tooltip("The total hits from slow items")]
     public int slowHits;
     [Tooltip("The table script")]
@@ -118,7 +116,6 @@ public class Boss : MonoBehaviour
 
         int index = Random.Range(0, attackPlaces.Length);
         nextPlaceToBe = attackPlaces[index];
-        speed = speedModifier;
     }
 
     public void Timers()
@@ -179,6 +176,21 @@ public class Boss : MonoBehaviour
 
     #region speed
 
+    public void ChangeSpeed(float speed, float timeToWait)
+    {
+        StartCoroutine(Speed(speed, timeToWait));
+    }
+
+    public IEnumerator Speed(float speed, float timeToWait)
+    {
+        float speedBefore = speedModifier;
+        speedModifier = speed;
+
+        yield return new WaitForSeconds(timeToWait);
+
+        speedModifier = speedBefore;
+    }
+
     public void SpeedModifier()
     {
         agent.speed = normalSpeed * speedModifier;
@@ -214,6 +226,11 @@ public class Boss : MonoBehaviour
 
     public void DecideNextMove()
     {
+        if (state == BossState.turning)
+        {
+            return;
+        }
+
         runTimer -= Time.deltaTime;
 
         if (runTimer <= 0)

@@ -167,6 +167,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   agent: {fileID: 2271361040179290097}
   rotatingObject: {fileID: 6701630007769607060}
+  animator: {fileID: 0}
   hp: 300
   pointDistance: 0.3
   swimming: {fileID: 0}
@@ -183,7 +184,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: f6e56e1d07d28fd48bcc39cb566ae89c, type: 2}
   MinSlowHits: 0
   slowHitsTime: 5
-  rotateSpeed: 10
+  rotateSpeed: 20
   rotateSnapDistance: 0.05
   minAttackTime: 15
   maxAttackTime: 25
@@ -191,7 +192,6 @@ MonoBehaviour:
   maxRunTime: 300
   minWaitTime: 5
   maxWaitTime: 10
-  attackAvoidTime: 5
   speed: 0
   slowHits: 0
   table: {fileID: 0}

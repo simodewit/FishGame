@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7aab8e660f363f4d8b10aab316e794b, type: 3}
   m_Name: Attack
   m_EditorClassIdentifier: 
-  animationName: 
-  animation: {fileID: 0}
-  escapeAttack: 0
+  triggerIndex: 0
+  attackSort: 0
+  side: 0
+  length: 3
