@@ -8872,7 +8872,7 @@ MonoBehaviour:
   spawnPlace: {fileID: 4825611262397805907}
   item: {fileID: 5035696622424051370, guid: 40eac25ef6bed1945a745f57989c83e0, type: 3}
   spawnDistance: 0.5
-  respawnTime: 3
+  respawnTime: 1
 --- !u!23 &5040326215486529469
 MeshRenderer:
   m_ObjectHideFlags: 0

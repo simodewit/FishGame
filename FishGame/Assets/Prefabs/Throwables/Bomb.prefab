@@ -4995,7 +4995,7 @@ Rigidbody:
     m_Bits: 0
   m_ImplicitCom: 1
   m_ImplicitTensor: 1
-  m_UseGravity: 0
+  m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 0
@@ -5017,10 +5017,10 @@ MonoBehaviour:
   explosionParticle: {fileID: 6094327725359618689}
   damage: 20
   colliderTime: 0.5
-  playerTag: Player
   canDamageBoss: 0
   canSlowDown: 0
   speedModifier: 0
+  speedTime: 0
   isExplosive: 1
   explosionRange: 3
   hasFront: 0

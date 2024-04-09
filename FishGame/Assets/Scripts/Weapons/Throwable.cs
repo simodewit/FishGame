@@ -73,6 +73,7 @@ public class Throwable : MonoBehaviour
 
     public void Start()
     {
+        rb.useGravity = false;
         colliderTimer = colliderTime;
         stickTimer = stickTime;
     }
@@ -93,11 +94,14 @@ public class Throwable : MonoBehaviour
     {
         state = ThrowableState.isHeld;
         col.enabled = false;
+        rb.useGravity = false;
+        rb.isKinematic = true;
     }
 
     public void DropThrowable()
     {
         state = ThrowableState.isThrown;
+        rb.isKinematic = false;
         rb.useGravity = true;
     }
 

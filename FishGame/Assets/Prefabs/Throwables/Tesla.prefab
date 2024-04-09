@@ -9873,6 +9873,7 @@ GameObject:
   - component: {fileID: 7217459027265421632}
   - component: {fileID: 4246838118813665899}
   - component: {fileID: 7007148361942802852}
+  - component: {fileID: 6944222633330023953}
   m_Layer: 3
   m_Name: Tesla
   m_TagString: Untagged
@@ -9938,11 +9939,12 @@ MonoBehaviour:
   col: {fileID: 3344727714542291625}
   rb: {fileID: 7217459027265421632}
   explosionParticle: {fileID: 6579653912373631164}
-  damage: 20
+  damage: 50
   colliderTime: 0.5
-  canDamageBoss: 0
+  canDamageBoss: 1
   canSlowDown: 1
   speedModifier: 0
+  speedTime: 3
   isExplosive: 0
   explosionRange: 0
   hasFront: 0
@@ -10124,9 +10126,22 @@ MonoBehaviour:
     m_RotationOrder: 4
   m_ThrowVelocityScale: 6
   m_ThrowAngularVelocityScale: 2
-  m_ForceGravityOnDetach: 0
+  m_ForceGravityOnDetach: 1
   m_RetainTransformParent: 1
   m_AttachPointCompatibilityMode: 0
   m_StartingSingleGrabTransformers: []
   m_StartingMultipleGrabTransformers: []
   m_AddDefaultGrabTransformers: 1
+--- !u!114 &6944222633330023953
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7172071461773805218}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e16569a4f6297d43bff62845421b471, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 7217459027265421632}

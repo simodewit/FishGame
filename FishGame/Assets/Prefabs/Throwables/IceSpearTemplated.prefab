@@ -215,12 +215,12 @@ MonoBehaviour:
   col: {fileID: 8167884406768344856}
   rb: {fileID: -3033414187623379944}
   explosionParticle: {fileID: 0}
-  damage: 20
+  damage: 10
   colliderTime: 0.3
-  playerTag: Player
-  canDamageBoss: 0
+  canDamageBoss: 1
   canSlowDown: 1
   speedModifier: 0.5
+  speedTime: 5
   isExplosive: 0
   explosionRange: 0
   hasFront: 1
