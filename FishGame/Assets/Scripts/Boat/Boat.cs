@@ -8,6 +8,8 @@ public class Boat : MonoBehaviour
     public float minParticleTime;
     [Tooltip("The maximum time before starting the water particles again")]
     public float maxParticleTime;
+    [Tooltip("The splash sound of the ocean")]
+    public AudioSource splashSound;
     [Tooltip("All the water particles")]
     public ParticleSystem[] waterParticles;
 
@@ -33,6 +35,7 @@ public class Boat : MonoBehaviour
 
             foreach (var particle in waterParticles)
             {
+                splashSound.Play();
                 particle.Play();
             }
         }

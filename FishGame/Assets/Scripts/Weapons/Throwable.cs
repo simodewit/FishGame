@@ -30,6 +30,10 @@ public class Throwable : MonoBehaviour
     public float colliderTime = 1;
     [Tooltip("Decides if the object can directly damage the boss")]
     public bool canDamageBoss;
+    [Tooltip("The sound when you pickup the throwable")]
+    public AudioSource pickupSound;
+    [Tooltip("The sound when you throw the throwable")]
+    public AudioSource throwSound;
 
     [Header("Slow down data")]
     [Tooltip("Decides if the object can slow the boss down")]
@@ -94,16 +98,22 @@ public class Throwable : MonoBehaviour
     public void PickupThrowable()
     {
         state = ThrowableState.isHeld;
+
         col.enabled = false;
         rb.useGravity = false;
         rb.isKinematic = true;
+
+        pickupSound.Play();
     }
 
     public void DropThrowable()
     {
         state = ThrowableState.isThrown;
+
         rb.isKinematic = false;
         rb.useGravity = true;
+
+        throwSound.Play();
     }
 
     #endregion
