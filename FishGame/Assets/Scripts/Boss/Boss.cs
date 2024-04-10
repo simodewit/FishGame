@@ -39,6 +39,8 @@ public class Boss : MonoBehaviour
     public float normalSpeed;
     [Tooltip("The speed multiplier of the boss")]
     public float speedModifier;
+    [Tooltip("The name of the swim animation")]
+    public string swimName;
 
     [Header("Attack data")]
     [Tooltip("The places where the boss can attack")]
@@ -114,6 +116,8 @@ public class Boss : MonoBehaviour
 
         int index = Random.Range(0, attackPlaces.Length);
         nextPlaceToBe = attackPlaces[index];
+
+        
     }
 
     public void Timers()
@@ -212,9 +216,13 @@ public class Boss : MonoBehaviour
 
     #region animations
 
-    public void Animations()
+    bool isPlaying()
     {
-        
+        if (animator.GetCurrentAnimatorStateInfo(0).IsName(swimName) &&
+                animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
+            return true;
+        else
+            return false;
     }
 
     #endregion
@@ -233,6 +241,11 @@ public class Boss : MonoBehaviour
 
         if (runTimer <= 0)
         {
+            if (escapeAttacks.Length == 0)
+            {
+                return;
+            }
+
             runTimer = Random.Range(minRunTime, maxRunTime);
 
             int index = Random.Range(0, escapeAttacks.Length);
@@ -243,6 +256,11 @@ public class Boss : MonoBehaviour
 
         if (attackTimer <= 0)
         {
+            if (attacks.Length == 0)
+            {
+                return;
+            }
+
             attackTimer = Random.Range(minAttackTime, maxAttackTime);
 
             int index = Random.Range(0, attacks.Length);
@@ -301,6 +319,11 @@ public class Boss : MonoBehaviour
             return;
         }
 
+        if (isPlaying() == true)
+        {
+            return;
+        }
+
         if (attackQueue.Count > 0)
         {
             currentAttack = attackQueue.Dequeue();
@@ -321,6 +344,8 @@ public class Boss : MonoBehaviour
             {
                 state = BossState.attackingDia;
             }
+
+            animator.SetTrigger(currentAttack.triggerIndex);
         }
     }
 
@@ -448,7 +473,7 @@ public class Boss : MonoBehaviour
             return;
         }
 
-        float distance = Vector3.Distance(transform.position, nextPlaceToBe.position);
+        float distance = Vector3.Distance(agent.transform.position, nextPlaceToBe.position);
 
         if (distance <= pointDistance)
         {

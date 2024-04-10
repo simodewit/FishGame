@@ -1,0 +1,148 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!181963792 &2655988077585873504
+Preset:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Base
+  m_TargetType:
+    m_NativeTypeID: 114
+    m_ManagedTypePPtr: {fileID: 11500000, guid: 805e1d38fa6927845a07f8646b29cf02,
+      type: 3}
+    m_ManagedTypeFallback: 
+  m_Properties:
+  - target: {fileID: 0}
+    propertyPath: m_Enabled
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorHideFlags
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: m_EditorClassIdentifier
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: agent
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rotatingObject
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: animator
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: hp
+    value: 300
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: pointDistance
+    value: 0.3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: normalSpeed
+    value: 3
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: speedModifier
+    value: 2
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: attackPlaces.Array.size
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: attacks.Array.size
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: attacks.Array.data[0]
+    value: 
+    objectReference: {fileID: 11400000, guid: d70d0974153dcb64ba2922330787bd64, type: 2}
+  - target: {fileID: 0}
+    propertyPath: attacks.Array.data[1]
+    value: 
+    objectReference: {fileID: 11400000, guid: 9fd9801d1c520de44a3b7db2bdfcbf3c, type: 2}
+  - target: {fileID: 0}
+    propertyPath: attacks.Array.data[2]
+    value: 
+    objectReference: {fileID: 11400000, guid: 927264d2cf459bb4f9ca1dbf092c7c1e, type: 2}
+  - target: {fileID: 0}
+    propertyPath: attacks.Array.data[3]
+    value: 
+    objectReference: {fileID: 11400000, guid: 8dcba4103ea1b184f91c161bfe7dc182, type: 2}
+  - target: {fileID: 0}
+    propertyPath: attacks.Array.data[4]
+    value: 
+    objectReference: {fileID: 11400000, guid: 8d50172c8bdf8c0488c8f06227cf9384, type: 2}
+  - target: {fileID: 0}
+    propertyPath: escapeAttacks.Array.size
+    value: 1
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: escapeAttacks.Array.data[0]
+    value: 
+    objectReference: {fileID: 11400000, guid: f6e56e1d07d28fd48bcc39cb566ae89c, type: 2}
+  - target: {fileID: 0}
+    propertyPath: MinSlowHits
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slowHitsTime
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rotateSpeed
+    value: 20
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: rotateSnapDistance
+    value: 0.05
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: minAttackTime
+    value: 15
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: maxAttackTime
+    value: 25
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: minRunTime
+    value: 200
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: maxRunTime
+    value: 300
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: minWaitTime
+    value: 5
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: maxWaitTime
+    value: 10
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: slowHits
+    value: 0
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: table
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: escapePlace
+    value: 
+    objectReference: {fileID: 0}
+  - target: {fileID: 0}
+    propertyPath: colliderScript
+    value: 
+    objectReference: {fileID: 0}
+  m_ExcludedProperties: []
