@@ -132,8 +132,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6952e8dfb5fd84ebdcaf7e3f907faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss: {fileID: 0}
-  isWeakspot: 1
+  boss: {fileID: 6415710492020697888}
+  isWeakspot: 0
   damageMultiplier: 0
   hp: 0
   layers: []
@@ -237,8 +237,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6952e8dfb5fd84ebdcaf7e3f907faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss: {fileID: 0}
-  isWeakspot: 1
+  boss: {fileID: 6415710492020697888}
+  isWeakspot: 0
   damageMultiplier: 0
   hp: 0
   layers: []
@@ -343,8 +343,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6952e8dfb5fd84ebdcaf7e3f907faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss: {fileID: 0}
-  isWeakspot: 1
+  boss: {fileID: 6415710492020697888}
+  isWeakspot: 0
   damageMultiplier: 0
   hp: 0
   layers: []
@@ -477,8 +477,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6952e8dfb5fd84ebdcaf7e3f907faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss: {fileID: 0}
-  isWeakspot: 1
+  boss: {fileID: 6415710492020697888}
+  isWeakspot: 0
   damageMultiplier: 0
   hp: 0
   layers: []
@@ -551,8 +551,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6952e8dfb5fd84ebdcaf7e3f907faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss: {fileID: 0}
-  isWeakspot: 1
+  boss: {fileID: 6415710492020697888}
+  isWeakspot: 0
   damageMultiplier: 0
   hp: 0
   layers: []
@@ -766,8 +766,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6952e8dfb5fd84ebdcaf7e3f907faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss: {fileID: 0}
-  isWeakspot: 1
+  boss: {fileID: 6415710492020697888}
+  isWeakspot: 0
   damageMultiplier: 0
   hp: 0
   layers: []
@@ -974,8 +974,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6952e8dfb5fd84ebdcaf7e3f907faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss: {fileID: 0}
-  isWeakspot: 1
+  boss: {fileID: 6415710492020697888}
+  isWeakspot: 0
   damageMultiplier: 0
   hp: 0
   layers: []
@@ -1087,8 +1087,13 @@ MonoBehaviour:
   pointDistance: 0.5
   normalSpeed: 5
   speedModifier: 1
+  swimName: 
   attackPlaces: []
-  attacks: []
+  attacks:
+  - {fileID: 11400000, guid: 0100953f09a6704469d09cd2078946ad, type: 2}
+  - {fileID: 11400000, guid: e25f81a6323d4354fbfdce1736ccf871, type: 2}
+  - {fileID: 11400000, guid: 9bab6a220ff933940be31614178e1016, type: 2}
+  - {fileID: 11400000, guid: f313990ac00c2e545a0ac130a476ea7d, type: 2}
   escapeAttacks: []
   MinSlowHits: 3
   slowHitsTime: 5
@@ -1233,8 +1238,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6952e8dfb5fd84ebdcaf7e3f907faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss: {fileID: 0}
-  isWeakspot: 1
+  boss: {fileID: 6415710492020697888}
+  isWeakspot: 0
   damageMultiplier: 0
   hp: 0
   layers: []
@@ -1339,8 +1344,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6952e8dfb5fd84ebdcaf7e3f907faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss: {fileID: 0}
-  isWeakspot: 1
+  boss: {fileID: 6415710492020697888}
+  isWeakspot: 0
   damageMultiplier: 0
   hp: 0
   layers: []
@@ -1411,8 +1416,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6952e8dfb5fd84ebdcaf7e3f907faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss: {fileID: 0}
-  isWeakspot: 1
+  boss: {fileID: 6415710492020697888}
+  isWeakspot: 0
   damageMultiplier: 0
   hp: 0
   layers: []
@@ -1579,8 +1584,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cf6952e8dfb5fd84ebdcaf7e3f907faa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  boss: {fileID: 0}
-  isWeakspot: 1
+  boss: {fileID: 6415710492020697888}
+  isWeakspot: 0
   damageMultiplier: 0
   hp: 0
   layers: []
