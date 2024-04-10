@@ -42,6 +42,12 @@ public class Boss : MonoBehaviour
     [Tooltip("The name of the swim animation")]
     public string swimName;
 
+    [Header("Sounds")]
+    public AudioSource startSound;
+    public AudioSource lostSound;
+    public AudioSource wonSound;
+    public AudioSource attackSound;
+
     [Header("Attack data")]
     [Tooltip("The places where the boss can attack")]
     public Transform[] attackPlaces;
@@ -116,6 +122,8 @@ public class Boss : MonoBehaviour
 
         int index = Random.Range(0, attackPlaces.Length);
         nextPlaceToBe = attackPlaces[index];
+
+        startSound.Play();
     }
 
     public void Timers()
@@ -158,6 +166,7 @@ public class Boss : MonoBehaviour
         if (hp <= 0)
         {
             table.state = stateOfUI.inUi;
+            wonSound.Play();
             Destroy(gameObject);
         }
     }
@@ -322,6 +331,8 @@ public class Boss : MonoBehaviour
             return;
         }
 
+        attackSound.Play();
+
         if (attackQueue.Count > 0)
         {
             currentAttack = attackQueue.Dequeue();
@@ -402,6 +413,7 @@ public class Boss : MonoBehaviour
             {
                 table.state = stateOfUI.inUi;
                 Destroy(transform.parent.gameObject);
+                lostSound.Play();
             }
 
             colliderToTurnOn.SetActive(false);
@@ -449,6 +461,7 @@ public class Boss : MonoBehaviour
             {
                 table.state = stateOfUI.inUi;
                 Destroy(gameObject);
+                lostSound.Play();
             }
         }
     }

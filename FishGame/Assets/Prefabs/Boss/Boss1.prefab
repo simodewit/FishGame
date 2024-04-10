@@ -1087,7 +1087,11 @@ MonoBehaviour:
   pointDistance: 0.5
   normalSpeed: 5
   speedModifier: 1
-  swimName: 
+  swimName: metarig|Zwemmen_001
+  startSound: {fileID: 0}
+  lostSound: {fileID: 0}
+  wonSound: {fileID: 0}
+  attackSound: {fileID: 0}
   attackPlaces: []
   attacks:
   - {fileID: 11400000, guid: 0100953f09a6704469d09cd2078946ad, type: 2}
