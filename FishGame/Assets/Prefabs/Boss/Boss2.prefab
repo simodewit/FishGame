@@ -1047,15 +1047,15 @@ MonoBehaviour:
   pointDistance: 0.3
   normalSpeed: 3
   speedModifier: 2
+  swimName: rig|Swimming
   attackPlaces: []
   attacks:
-  - {fileID: 11400000, guid: d70d0974153dcb64ba2922330787bd64, type: 2}
-  - {fileID: 11400000, guid: 9fd9801d1c520de44a3b7db2bdfcbf3c, type: 2}
-  - {fileID: 11400000, guid: 927264d2cf459bb4f9ca1dbf092c7c1e, type: 2}
-  - {fileID: 11400000, guid: 8dcba4103ea1b184f91c161bfe7dc182, type: 2}
-  - {fileID: 11400000, guid: 8d50172c8bdf8c0488c8f06227cf9384, type: 2}
-  escapeAttacks:
-  - {fileID: 11400000, guid: f6e56e1d07d28fd48bcc39cb566ae89c, type: 2}
+  - {fileID: 11400000, guid: 0b2c35250acabc84a932b9005a97f7be, type: 2}
+  - {fileID: 11400000, guid: 7bbb4160f79f8c247a99ba7272242416, type: 2}
+  - {fileID: 11400000, guid: 6e55b89f5df32674eb7e0e66218f1571, type: 2}
+  - {fileID: 11400000, guid: 3021bbdee57b3d041b41c6c738db04d5, type: 2}
+  - {fileID: 11400000, guid: d480dfa740b8d6e46873d0bc9ae3d23e, type: 2}
+  escapeAttacks: []
   MinSlowHits: 0
   slowHitsTime: 5
   rotateSpeed: 20
@@ -1080,7 +1080,7 @@ Animator:
   m_GameObject: {fileID: 961203694841834099}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 151d91b854e2c9f4492c48af77d5977d, type: 2}
+  m_Controller: {fileID: 9100000, guid: c078561dd55a6b541af7afcdbd667643, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0

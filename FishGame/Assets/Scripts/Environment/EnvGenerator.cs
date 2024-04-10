@@ -14,7 +14,7 @@ public class EnvGenerator : MonoBehaviour
     [Tooltip("The table script")]
     public Table table;
     [Tooltip("All the states that the spawner shouldnt spawn")]
-    public stateOfUI[] dontSpawnStates;
+    public stateOfUI[] spawnStates;
 
     [Tooltip("All the environment prefabs that can be randomily generated")]
     public IslandInfo[] prefabs;
@@ -44,7 +44,7 @@ public class EnvGenerator : MonoBehaviour
 
     public void CheckSpawning()
     {
-        foreach (var state in dontSpawnStates)
+        foreach (var state in spawnStates)
         {
             if (state == table.state)
             {
