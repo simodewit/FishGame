@@ -76,6 +76,7 @@ public class Throwable : MonoBehaviour
         rb.useGravity = false;
         colliderTimer = colliderTime;
         stickTimer = stickTime;
+        col.enabled = true;
     }
 
     public void Update()

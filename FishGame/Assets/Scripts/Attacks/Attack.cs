@@ -21,7 +21,7 @@ public enum attackPlace
 public class Attack : ScriptableObject
 {
     [Tooltip("The index of the attack in the animator")]
-    public int triggerIndex;
+    public string triggerIndex;
     [Tooltip("Decides what kind of attack this is")]
     public attackSort attackSort;
     [Tooltip("Decides if the attack is left or right sided or both. only works with vertical and diagonal attacks")]

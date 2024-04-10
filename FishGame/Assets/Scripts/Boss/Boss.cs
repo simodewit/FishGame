@@ -116,8 +116,6 @@ public class Boss : MonoBehaviour
 
         int index = Random.Range(0, attackPlaces.Length);
         nextPlaceToBe = attackPlaces[index];
-
-        
     }
 
     public void Timers()
@@ -319,7 +317,7 @@ public class Boss : MonoBehaviour
             return;
         }
 
-        if (isPlaying() == true)
+        if (!animator.GetCurrentAnimatorStateInfo(0).IsName(swimName))
         {
             return;
         }
@@ -403,7 +401,7 @@ public class Boss : MonoBehaviour
             if (isHit)
             {
                 table.state = stateOfUI.inUi;
-                Destroy(gameObject);
+                Destroy(transform.parent.gameObject);
             }
 
             colliderToTurnOn.SetActive(false);
