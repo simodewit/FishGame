@@ -10509,6 +10509,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Boss2
       objectReference: {fileID: 0}
+    - target: {fileID: 3852770622193223576, guid: f2c34c7b8438b5841a2ea4296e7e6a6d,
+        type: 3}
+      propertyPath: m_Controller
+      value: 
+      objectReference: {fileID: 9100000, guid: c078561dd55a6b541af7afcdbd667643, type: 2}
     - target: {fileID: 4745213544653030319, guid: f2c34c7b8438b5841a2ea4296e7e6a6d,
         type: 3}
       propertyPath: m_LocalPosition.x
