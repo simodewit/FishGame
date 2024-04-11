@@ -5143,7 +5143,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   col: {fileID: 5826018813421757577}
   rb: {fileID: 8288410316880537900}
-  explosionParticle: {fileID: 6094327725359618689}
+  particle: {fileID: 6094327725359618689}
+  useParticle: 1
   damage: 20
   colliderTime: 0.5
   canDamageBoss: 0

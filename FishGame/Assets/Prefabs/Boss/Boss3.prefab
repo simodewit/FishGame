@@ -2811,7 +2811,9 @@ MonoBehaviour:
   agent: {fileID: 1559038104722865157}
   rotatingObject: {fileID: 2026315216343425376}
   animator: {fileID: 5133213971377910993}
-  hp: 300
+  offset: {x: 0, y: 0, z: 0}
+  longAnimations: 0
+  hp: 50
   pointDistance: 1
   normalSpeed: 3
   speedModifier: 2

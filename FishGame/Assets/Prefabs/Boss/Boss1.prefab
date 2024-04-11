@@ -1374,7 +1374,7 @@ MonoBehaviour:
   animator: {fileID: 6488438989676593861}
   offset: {x: 0, y: 0, z: 0}
   longAnimations: 0
-  hp: 500
+  hp: 50
   pointDistance: 2
   normalSpeed: 5
   speedModifier: 1

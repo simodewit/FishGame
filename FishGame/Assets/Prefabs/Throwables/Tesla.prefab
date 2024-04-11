@@ -10194,7 +10194,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   col: {fileID: 3344727714542291625}
   rb: {fileID: 7217459027265421632}
-  explosionParticle: {fileID: 6579653912373631164}
+  particle: {fileID: 6579653912373631164}
+  useParticle: 1
   damage: 50
   colliderTime: 0.5
   canDamageBoss: 1
@@ -10382,7 +10383,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_ThrowVelocityScale: 6
+  m_ThrowVelocityScale: 8
   m_ThrowAngularVelocityScale: 2
   m_ForceGravityOnDetach: 1
   m_RetainTransformParent: 1

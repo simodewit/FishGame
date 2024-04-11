@@ -20,8 +20,9 @@ public class Throwable : MonoBehaviour
     public Collider col;
     [Tooltip("The rigidbody of this object")]
     public Rigidbody rb;
-    [Tooltip("The explosion particle (only works if isExplosive is enabled)")]
-    public ParticleSystem explosionParticle;
+    [Tooltip("The particle")]
+    public ParticleSystem particle;
+    public bool useParticle;
 
     [Header("General data")]
     [Tooltip("The damage that the throwable does to the enemy")][Range(0, 100)]
@@ -248,10 +249,14 @@ public class Throwable : MonoBehaviour
     }
     public void Explosion(Collision collision)
     {
+        if (useParticle)
+        {
+            particle.Play();
+            particle.transform.parent = null;
+        }
+
         if (isExplosive)
         {
-            explosionParticle.Play();
-
             Collider[] cols = Physics.OverlapSphere(transform.position, explosionRange);
 
             foreach (Collider col in cols)

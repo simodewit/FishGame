@@ -251,6 +251,12 @@ public class Boss : MonoBehaviour
             return;
         }
 
+        NormalAttack();
+        Run();
+    }
+
+    public void Run()
+    {
         runTimer -= Time.deltaTime;
 
         if (runTimer <= 0)
@@ -265,7 +271,10 @@ public class Boss : MonoBehaviour
             int index = Random.Range(0, escapeAttacks.Length);
             attackQueue.Enqueue(escapeAttacks[index]);
         }
+    }
 
+    public void NormalAttack()
+    {
         attackTimer -= Time.deltaTime;
 
         if (attackTimer <= 0)
