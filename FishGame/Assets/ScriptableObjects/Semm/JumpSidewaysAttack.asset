@@ -15,4 +15,4 @@ MonoBehaviour:
   triggerIndex: Attack1
   attackSort: 0
   side: 2
-  length: 5
+  length: 10
