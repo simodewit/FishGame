@@ -10383,7 +10383,7 @@ MonoBehaviour:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
-  m_ThrowVelocityScale: 6
+  m_ThrowVelocityScale: 8
   m_ThrowAngularVelocityScale: 2
   m_ForceGravityOnDetach: 1
   m_RetainTransformParent: 1
