@@ -1172,8 +1172,10 @@ MonoBehaviour:
   agent: {fileID: 9008396875657085622}
   rotatingObject: {fileID: 4438595892987020937}
   animator: {fileID: 3852770622193223576}
+  offset: {x: 0, y: 10, z: 0}
+  longAnimations: 0
   hp: 300
-  pointDistance: 0.3
+  pointDistance: 2
   normalSpeed: 3
   speedModifier: 2
   swimName: rig|Swimming

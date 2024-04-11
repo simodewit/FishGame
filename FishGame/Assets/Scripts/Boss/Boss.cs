@@ -29,6 +29,8 @@ public class Boss : MonoBehaviour
     public Transform rotatingObject;
     [Tooltip("The animator of the boss")]
     public Animator animator;
+    public Vector3 offset;
+    public bool longAnimations;
 
     [Header("General info")]
     [Tooltip("The total hp of the boss")][Range(0,5000)]
@@ -104,6 +106,8 @@ public class Boss : MonoBehaviour
     private int currentLocation;
     private bool isHit;
     private bool hasAddedTime;
+    private bool canAttack;
+    private bool canEnable;
 
     private BossState state;
 
@@ -124,6 +128,7 @@ public class Boss : MonoBehaviour
         nextPlaceToBe = attackPlaces[index];
 
         startSound.Play();
+        canEnable = true;
     }
 
     public void Timers()
@@ -152,6 +157,7 @@ public class Boss : MonoBehaviour
         Escaping();
         SpeedModifier();
         Moving();
+        CheckTurnBack();
     }
 
     #endregion
@@ -223,13 +229,9 @@ public class Boss : MonoBehaviour
 
     #region animations
 
-    bool isPlaying()
+    public void CanAttack()
     {
-        if (animator.GetCurrentAnimatorStateInfo(0).IsName(swimName) &&
-                animator.GetCurrentAnimatorStateInfo(0).normalizedTime < 1.0f)
-            return true;
-        else
-            return false;
+        canAttack = true;
     }
 
     #endregion
@@ -239,6 +241,11 @@ public class Boss : MonoBehaviour
 
     public void DecideNextMove()
     {
+        if (longAnimations && state == BossState.attackingHor || state == BossState.attackingVer || state == BossState.attackingDia)
+        {
+            return;
+        }
+
         if (state == BossState.turning)
         {
             return;
@@ -326,11 +333,12 @@ public class Boss : MonoBehaviour
             return;
         }
 
-        if (!animator.GetCurrentAnimatorStateInfo(0).IsName(swimName))
+        if (!canAttack)
         {
             return;
         }
 
+        canAttack = false;
         attackSound.Play();
 
         if (attackQueue.Count > 0)
@@ -398,6 +406,11 @@ public class Boss : MonoBehaviour
 
     public void CanDamage(GameObject colliderToTurnOn)
     {
+        if (!canEnable)
+        {
+            return;
+        }
+
         if (!hasAddedTime)
         {
             attackAvoidTimer = currentAttack.length;
@@ -416,9 +429,32 @@ public class Boss : MonoBehaviour
                 lostSound.Play();
             }
 
+            canEnable = false;
             colliderToTurnOn.SetActive(false);
-            state = BossState.turningBack;
             hasAddedTime = false;
+        }
+    }
+
+    #endregion
+
+    #region turning back
+
+    public void CheckTurnBack()
+    {
+        if (state == BossState.attackingVer || state == BossState.attackingHor || state == BossState.attackingDia)
+        {
+            if (!canAttack)
+            {
+                return;
+            }
+
+            if(hasAddedTime)
+            {
+                return;
+            }
+
+            canEnable = true;
+            state = BossState.turningBack;
         }
     }
 
@@ -472,7 +508,7 @@ public class Boss : MonoBehaviour
 
     public void Moving()
     {
-        transform.position = agent.transform.position;
+        transform.position = agent.transform.position + offset;
 
         if (state != BossState.notMoving && state != BossState.moving)
         {

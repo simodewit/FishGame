@@ -1372,8 +1372,10 @@ MonoBehaviour:
   agent: {fileID: 4681586213275787613}
   rotatingObject: {fileID: 1218154328285794046}
   animator: {fileID: 6488438989676593861}
+  offset: {x: 0, y: 0, z: 0}
+  longAnimations: 0
   hp: 500
-  pointDistance: 0.5
+  pointDistance: 2
   normalSpeed: 5
   speedModifier: 1
   swimName: metarig|Zwemmen_001
