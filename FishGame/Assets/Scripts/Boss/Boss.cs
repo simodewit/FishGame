@@ -107,6 +107,7 @@ public class Boss : MonoBehaviour
     private bool isHit;
     private bool hasAddedTime;
     private bool canAttack;
+    private bool canEnable;
 
     private BossState state;
 
@@ -127,6 +128,7 @@ public class Boss : MonoBehaviour
         nextPlaceToBe = attackPlaces[index];
 
         startSound.Play();
+        canEnable = true;
     }
 
     public void Timers()
@@ -155,6 +157,7 @@ public class Boss : MonoBehaviour
         Escaping();
         SpeedModifier();
         Moving();
+        CheckTurnBack();
     }
 
     #endregion
@@ -403,6 +406,11 @@ public class Boss : MonoBehaviour
 
     public void CanDamage(GameObject colliderToTurnOn)
     {
+        if (!canEnable)
+        {
+            return;
+        }
+
         if (!hasAddedTime)
         {
             attackAvoidTimer = currentAttack.length;
@@ -421,9 +429,32 @@ public class Boss : MonoBehaviour
                 lostSound.Play();
             }
 
+            canEnable = false;
             colliderToTurnOn.SetActive(false);
-            state = BossState.turningBack;
             hasAddedTime = false;
+        }
+    }
+
+    #endregion
+
+    #region turning back
+
+    public void CheckTurnBack()
+    {
+        if (state == BossState.attackingVer || state == BossState.attackingHor || state == BossState.attackingDia)
+        {
+            if (!canAttack)
+            {
+                return;
+            }
+
+            if(hasAddedTime)
+            {
+                return;
+            }
+
+            canEnable = true;
+            state = BossState.turningBack;
         }
     }
 

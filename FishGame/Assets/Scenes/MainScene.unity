@@ -6079,15 +6079,15 @@ MonoBehaviour:
     minRotation: 0
     maxRotation: 0
     bothSides: 0
-    minDistance: 70
-    maxDistance: 130
+    minDistance: 150
+    maxDistance: 200
   - prefab: {fileID: 4413846475056880801, guid: c0d1d3d68cdbee14b88339fc3211a212,
       type: 3}
     minRotation: 0
     maxRotation: 0
     bothSides: 0
-    minDistance: 70
-    maxDistance: 130
+    minDistance: 150
+    maxDistance: 200
   - prefab: {fileID: 7598981136492819136, guid: 2d31f3fe06904514ea5d0e3fb5b16f16,
       type: 3}
     minRotation: 0
