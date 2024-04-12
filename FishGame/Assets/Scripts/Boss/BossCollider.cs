@@ -10,8 +10,6 @@ public class BossCollider : MonoBehaviour
 
     [Tooltip("The gameObject of the boss")]
     public Boss boss;
-    [Tooltip("Decides if this is a weakspot or boss collider directly")]
-    public bool isWeakspot;
     [Tooltip("The extra amount of damage the boss gets if the weakspot is hit")]
     public float damageMultiplier;
     [Tooltip("The damage that the throwables have to do before revealing the weakspot")]
@@ -51,7 +49,7 @@ public class BossCollider : MonoBehaviour
 
             if (!isExplosive)
             {
-                int damageToDo = (int)(damage * damageMultiplier);
+                int damageToDo = (int)(damage);
                 boss.Health(damageToDo);
             }
         }

@@ -6074,8 +6074,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e984f39dee02d4488613fddc22aa76f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  minTime: 12
-  maxTime: 18
+  minTime: 30
+  maxTime: 50
   table: {fileID: 688842901}
   spawnStates: 040000000500000006000000
   prefabs:
@@ -13790,7 +13790,7 @@ Transform:
   m_GameObject: {fileID: 1363967572691095549}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 1.4716988, y: 17.34, z: 20.718563}
+  m_LocalPosition: {x: 1.4716988, y: 21, z: 20.718563}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

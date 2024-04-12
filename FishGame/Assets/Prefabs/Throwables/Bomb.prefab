@@ -5145,15 +5145,15 @@ MonoBehaviour:
   rb: {fileID: 8288410316880537900}
   particle: {fileID: 6094327725359618689}
   useParticle: 1
-  damage: 20
+  damage: 30
   colliderTime: 0.5
-  canDamageBoss: 0
+  canDamageBoss: 1
   pickupSound: {fileID: 2807730851523096017}
   throwSound: {fileID: 6382699660850053789}
   canSlowDown: 0
   speedModifier: 0
   speedTime: 0
-  isExplosive: 1
+  isExplosive: 0
   explosionRange: 3
   hasFront: 0
   turnSpeed: 3

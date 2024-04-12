@@ -265,10 +265,7 @@ public class Throwable : MonoBehaviour
 
                 if (spot != null)
                 {
-                    if (spot.isWeakspot)
-                    {
-                        spot.Health(damage, isExplosive);
-                    }
+                    spot.Health(damage, isExplosive);
                 }
             }
         }

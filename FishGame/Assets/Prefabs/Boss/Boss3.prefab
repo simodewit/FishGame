@@ -68,7 +68,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -140,7 +139,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -245,7 +243,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -348,7 +345,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -422,7 +418,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -666,7 +661,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -876,7 +870,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -1121,7 +1114,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -1194,7 +1186,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -1299,7 +1290,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -1509,7 +1499,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -1581,7 +1570,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -1653,7 +1641,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -1900,7 +1887,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -1974,7 +1960,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -2045,7 +2030,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -2117,7 +2101,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -2191,7 +2174,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -2329,7 +2311,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -2403,7 +2384,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -2649,7 +2629,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -2723,7 +2702,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -2739,6 +2717,7 @@ GameObject:
   - component: {fileID: 9156507562797571789}
   - component: {fileID: 6754499558741263468}
   - component: {fileID: 5133213971377910993}
+  - component: {fileID: 4442772111795210653}
   m_Layer: 7
   m_Name: monster met rig
   m_TagString: Untagged
@@ -2813,7 +2792,7 @@ MonoBehaviour:
   animator: {fileID: 5133213971377910993}
   offset: {x: 0, y: 0, z: 0}
   longAnimations: 0
-  hp: 50
+  hp: 500
   pointDistance: 1
   normalSpeed: 3
   speedModifier: 2
@@ -2866,6 +2845,22 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &4442772111795210653
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3740793747010649707}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cf6952e8dfb5fd84ebdcaf7e3f907faa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  boss: {fileID: 6754499558741263468}
+  damageMultiplier: 1
+  hp: 0
+  layers: []
 --- !u!1 &4042687437728569963
 GameObject:
   m_ObjectHideFlags: 0
@@ -2936,7 +2931,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -3008,7 +3002,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -3083,7 +3076,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -3158,7 +3150,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -3360,7 +3351,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -3433,7 +3423,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -3569,7 +3558,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -3641,7 +3629,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -3715,7 +3702,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -3789,7 +3775,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -3861,7 +3846,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -3935,7 +3919,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -4041,7 +4024,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -4115,7 +4097,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -4189,7 +4170,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -4263,7 +4243,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -4337,7 +4316,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -4411,7 +4389,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -4484,7 +4461,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -4560,7 +4536,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -4634,7 +4609,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -4836,7 +4810,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -4944,7 +4917,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -5018,7 +4990,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -5091,7 +5062,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -5165,7 +5135,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -5378,7 +5347,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -5517,7 +5485,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -5730,7 +5697,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -5804,7 +5770,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -5875,7 +5840,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -5949,7 +5913,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -6021,7 +5984,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -6126,7 +6088,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -6198,7 +6159,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -6272,7 +6232,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -6344,7 +6303,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
@@ -6420,7 +6378,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   boss: {fileID: 6754499558741263468}
-  isWeakspot: 0
   damageMultiplier: 1
   hp: 0
   layers: []
